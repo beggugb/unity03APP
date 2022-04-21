@@ -3,10 +3,10 @@ import { css } from "@emotion/react";
 import { Route, Switch, NavLink } from "react-router-dom";
 import { Row, Col, Button, Nav, Modal, ModalBody, NavItem } from "reactstrap";
 import {  useSelector, useDispatch } from "react-redux";
-import { usuarioActions} from "../../actions"
+import { usuarioActions, crudActions} from "../../actions"
 import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faQuestion, faBell, faEnvelope,faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import CrmInicio from "../../pages/CRM/InicioView.jsx"
 import Clientes from "../../pages/CRM/Clientes/ClientesView"
 import Tickets from "../../pages/CRM/Tickets/TicketsView"
@@ -16,20 +16,21 @@ import Informes from "../../pages/CRM/Informes/ClientesView.jsx"
 import ICotizaciones from "../../pages/CRM/Informes/CotizacionesView.jsx"
 import IProspectos from "../../pages/CRM/Informes/ProspectosView.jsx"
 import ITickets from "../../pages/CRM/Informes/TicketsView.jsx";
-
+import Moment from "react-moment";
 
 const override = css`
   display: block;
   margin: 0 auto;
   border-color: red;
 `;
-
+const fechaHoy = new Date()
 function Crm(){
   const dispatch = useDispatch() 
     const usuario = JSON.parse(localStorage.getItem('@userUnity'))
     const [itemr,setItemr] = useState([])    
-    const modulos = JSON.parse(localStorage.getItem('@userItems'))    
+    const modulos = JSON.parse(localStorage.getItem('@userItems'))      
     const { loading }= useSelector(state => state.usuarios)
+   
 
     const changeModule = useCallback((name, tab, pky) =>{
         let items = [...itemr];
@@ -87,6 +88,8 @@ function Crm(){
 
     useEffect(() => {        
         changeModule();
+        let ii ={"pr":"0"}
+        dispatch(crudActions.GET_SEARCH('TDCS_TITEM','tdcs',ii))  
         return () => {
          
         };
@@ -115,20 +118,40 @@ return(
             <div className="center-unity">
             <h6>CRM</h6>  
             </div> 
+            <div className="conta-unity">
+            <Row className="barraUser">                                                                  
+                <Col md={3}>                    
+                    <p>Usuario: {usuario.username}</p>
+                </Col> 
+                <Col md={3}>                    
+                    <p>Fecha: <Moment format="DD/MM/YYYY">{fechaHoy}</Moment></p>
+                </Col>                               
+              </Row>
+            </div>
             <div className="right-unity">
-                  <Row className="barraUser">              
-                    <Col md={2}> 
+            <Row className="barraUser">                                  
+                    <Col md={3}> 
                     <div className="circulu">
-                        <FontAwesomeIcon icon={faUser} />  
+                        <FontAwesomeIcon icon={faEnvelope} />  
                     </div>                    
                     </Col>
-                    <Col md={8}>                    
-                        <p>Usuario: {usuario.nombres}</p>
-                    </Col>                                         
-                    <Col md={2} className="text-right"> 
+                    <Col md={3}> 
+                    <div className="circulu">
+                        <FontAwesomeIcon icon={faBell} />  
+                    </div>                    
+                    </Col>
+                    <Col md={3}> 
+                    <div className="circulu">
+                        <FontAwesomeIcon icon={faQuestion} />  
+                    </div>                    
+                    </Col>
+                                                             
+                    <Col md={3} className="text-right"> 
+                      <div className="circulu">
                       <Button className="btn-barra" onClick={() => {logoutt()}} >
                         <FontAwesomeIcon icon={faSignOutAlt} />
                       </Button>                            
+                      </div>
                     </Col>   
                   </Row>   
             </div>  

@@ -3,13 +3,13 @@ import { css } from "@emotion/react";
 import { Route, Switch, NavLink } from "react-router-dom";
 import { Row, Col, Button, Nav, Modal, ModalBody, NavItem } from "reactstrap";
 import {  useSelector, useDispatch } from "react-redux";
-import { usuarioActions} from "../../actions"
+import { usuarioActions, crudActions} from "../../actions"
 import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faQuestion, faBell, faEnvelope, faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import Empresa from "../../pages/SECURITY/Empresa/EditEmpresa.jsx"
 import Usuarios from "../../pages/SECURITY/Usuarios/UsuariosView.jsx"
-
+import Moment from "react-moment";
 
 const override = css`
   display: block;
@@ -17,12 +17,15 @@ const override = css`
   border-color: red;
 `;
 
+const fechaHoy = new Date()
 function Tool(){
   const dispatch = useDispatch() 
     const usuario = JSON.parse(localStorage.getItem('@userUnity'))
     const [itemr,setItemr] = useState([])    
-    const modulos = JSON.parse(localStorage.getItem('@userItems'))    
+    const modulos = JSON.parse(localStorage.getItem('@userItems')) 
+    const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))   
     const { loading }= useSelector(state => state.usuarios)
+    const { titem } = useSelector(state => state.tdcs) 
 
     const changeModule = useCallback((name, tab, pky) =>{
         let items = [...itemr];
@@ -78,6 +81,8 @@ function Tool(){
 
     useEffect(() => {        
         changeModule();
+        let ii ={"pr":"0"}
+        dispatch(crudActions.GET_SEARCH('TDCS_TITEM','tdcs',ii))
         return () => {
          
         };
@@ -106,20 +111,46 @@ return(
             <div className="center-unity">
             <h6>Configuraciones</h6>  
             </div> 
+            <div className="conta-unity">
+            <Row className="barraUser">                                  
+                <Col md={3}>                    
+                    <p>TDC: {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(titem)} </p>
+                </Col>
+                <Col md={3}>                    
+                    <p>Moneda: {empresa.moneda}</p>
+                </Col> 
+                <Col md={3}>                    
+                    <p>Usuario: {usuario.username}</p>
+                </Col> 
+                <Col md={3}>                    
+                    <p>Fecha: <Moment format="DD/MM/YYYY">{fechaHoy}</Moment></p>
+                </Col>                               
+              </Row>
+            </div> 
             <div className="right-unity">
-                  <Row className="barraUser">              
-                    <Col md={2}> 
+            <Row className="barraUser">                                  
+                    <Col md={3}> 
                     <div className="circulu">
-                        <FontAwesomeIcon icon={faUser} />  
+                        <FontAwesomeIcon icon={faEnvelope} />  
                     </div>                    
                     </Col>
-                    <Col md={8}>                    
-                        <p>Usuario: {usuario.nombres}</p>
-                    </Col>                                         
-                    <Col md={2} className="text-right"> 
+                    <Col md={3}> 
+                    <div className="circulu">
+                        <FontAwesomeIcon icon={faBell} />  
+                    </div>                    
+                    </Col>
+                    <Col md={3}> 
+                    <div className="circulu">
+                        <FontAwesomeIcon icon={faQuestion} />  
+                    </div>                    
+                    </Col>
+                                                             
+                    <Col md={3} className="text-right"> 
+                      <div className="circulu">
                       <Button className="btn-barra" onClick={() => {logoutt()}} >
                         <FontAwesomeIcon icon={faSignOutAlt} />
                       </Button>                            
+                      </div>
                     </Col>   
                   </Row>   
             </div>  

@@ -7,8 +7,6 @@ import { crudActions } from '../../../actions'
 import { Modal, ModalBody, Button  } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import SubMenu from '../../../components/subMenu.jsx';
-import { InventarioRouter } from '../../../routes'
 import ArticuloResumen from "./components/ArticuloResumen";
 import ArticuloEtiquetas from "./components/ArticuloEtiquetas";
 import ArticuloQr from "./components/ArticuloQr";

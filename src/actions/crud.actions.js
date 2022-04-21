@@ -138,8 +138,7 @@ function GET_SEARCH(xredux, payload, dato) {
     /*dispatch({type:'SET_LOADING',state:true})*/
     crudService
       .GET_SEARCH(payload, dato)
-      .then((response) => {        
-              
+      .then((response) => {                  
         if(response.result){                   
           dispatch(resRedux(xredux, response.result));                  
         } 

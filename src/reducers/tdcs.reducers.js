@@ -11,6 +11,7 @@ const initialState = {
       usuarioId:0,
       detalle:''      
     },
+    titem:0     
   };
   
   export function tdcs(state = initialState, action) {
@@ -34,6 +35,11 @@ const initialState = {
             ...state,
             item: action.response
           }; 
+      case "TDCS_TITEM":
+          return {
+          ...state,
+          titem: action.response.monto
+      };     
       case "TDCS_DATA":
         return {
           ...state,

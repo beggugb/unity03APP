@@ -7,7 +7,7 @@ import { faEnvelope, faCheck, faReceipt, faEdit, faSearch, faPlus ,faFilePdf, fa
 import { customs } from '../../../../helpers/customStyles'
 import Select from 'react-select'  
 import ProspectoResumen from "./ProspectoResumen";
-import DatePicker, { registerLocale } from  "react-datepicker";
+import  { registerLocale } from  "react-datepicker";
 import es from 'date-fns/locale/es';
 registerLocale('es', es)
 

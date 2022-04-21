@@ -1,4 +1,4 @@
-import React,{useEffect, useCallback, useState} from "react";
+import React,{useEffect,  useState} from "react";
 import { FormGroup, Label, Table, Row, Col, Card, CardBody, CardFooter, Input  } from "reactstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { crudActions } from '../../../../actions'
@@ -15,6 +15,7 @@ const TableCompras = ({getComponent}) => {
    const dispatch = useDispatch() 
    const [pag, setpag] = useState(15);
    const {data,pagina,paginas,indicador }= useSelector(state => state.compras)
+ 
    const usuario = JSON.parse(localStorage.getItem('@userUnity'))
    const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))
  

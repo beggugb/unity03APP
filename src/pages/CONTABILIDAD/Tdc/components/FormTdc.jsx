@@ -40,13 +40,8 @@ function FormTarea({fecha,toogleModalView}){
     
     toogleModalView()
   }
-  const onChange1 = (value) => {          
-    dispatch(crudActions.SET_CHANGE('TDCS_CHANGE','start',value)) 
-  }
 
-  const handleNew = () => {                    
-    dispatch({type:'TDCS_ITEM_RESET'}) 
-  }
+
  
 return(
     <div className="registroCalendarios">

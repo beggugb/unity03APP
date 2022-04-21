@@ -10,6 +10,7 @@ const Comprobantes = () => {
   const dispatch = useDispatch() 
   const [component, setComponent] = useState();  
   const { modalView } = useSelector(state => state.comprobantes)  
+  
   const getComponent = useCallback((io, key) =>{    
       switch(io){
         case 'data':
@@ -20,7 +21,8 @@ const Comprobantes = () => {
           setComponent(<EditComprobante getComponent={getComponent}/>)
           break;
         case 'edit':
-          dispatch(crudActions.GET_ITEM_LOAD('COMPROBANTES_ITEM','comprobantes',key)) 
+         
+          dispatch(crudActions.GET_ITEM_LOAD('COMPROBANTES_ITEM','comprobantes',key))           
           setComponent(<EditComprobante getComponent={getComponent}/>)
           break;    
         default:

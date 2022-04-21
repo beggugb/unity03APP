@@ -16,8 +16,7 @@ const EditEmpresa = () => {
     const [iok1, setiok1] = useState(true);
     const [iok2, setiok2] = useState(false);
     const [iok3, setiok3] = useState(false);
-    const [moneda, setmoneda] = useState(0);
-    const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))
+
   
     const [tab, settab] = useState('1');
     

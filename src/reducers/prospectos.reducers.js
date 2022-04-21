@@ -81,8 +81,7 @@ export function prospectos(state = initialState, action) {
       case "PROSPECTOS_RESET_ITEMS":
         return {
           ...state,
-          item: initialState.item,
-          items:[],
+          item: initialState.item,       
           indicador: 0,
           items:[]
         };

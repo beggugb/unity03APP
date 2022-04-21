@@ -14,6 +14,7 @@ import writtenNumber from 'written-number'
 const EditComprobante = ({getComponent}) => {
   const dispatch = useDispatch() 
   const { item } = useSelector(state => state.comprobantes)  
+  const { titem } = useSelector(state => state.tdcs)  
   const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))
 
 
@@ -28,7 +29,7 @@ const EditComprobante = ({getComponent}) => {
       <Row>        
         <Col md="3" className="btnBack">  
           <Button className="bg-success text-white" onClick={()=> getComponent('data',1)}>
-            <FontAwesomeIcon icon={faArrowLeft} /> LISTA CLIENTES
+            <FontAwesomeIcon icon={faArrowLeft} /> LISTA COMPROBANTES
           </Button>              
         </Col>  
       </Row>      
@@ -40,7 +41,7 @@ const EditComprobante = ({getComponent}) => {
       </Row>
 
       <Row>        
-        <Col md="4">
+        <Col md="3">
           <Card className="card-cmd">       
           <FormGroup>
             <Row form>    
@@ -53,6 +54,20 @@ const EditComprobante = ({getComponent}) => {
             </Row>
           </FormGroup>     
             
+            <FormGroup>
+              <Row form>    
+                <Col md={4}>                  
+                  <Label for="mTotal">Tipo de Cambio</Label>
+                </Col>
+                <Col md={8}>                  
+                  <Input type="number" name="titem" id="titem" 
+                      value={titem}                          
+                      onChange={ (e) => changeHandler(e)}                                                 
+                      readOnly={true}
+                  />
+                </Col>
+              </Row>
+            </FormGroup> 
             <FormGroup>
               <Row form>    
                 <Col md={4}>                  
@@ -103,7 +118,7 @@ const EditComprobante = ({getComponent}) => {
                         <Label for="mGlosa">Por concepto de :</Label>
                       </Col>
                       <Col md={8}>                  
-                        <Input type="text" name="glosaComprobante" id="glosaComprobante" 
+                        <Input type="textarea" name="glosaComprobante" id="glosaComprobante" 
                           value={item.glosaComprobante || ''}                          
                           onChange={ (e) => changeHandler(e)} />
                       </Col>
@@ -123,7 +138,7 @@ const EditComprobante = ({getComponent}) => {
                   </FormGroup>  
                   <FormGroup>
                     <Row form>    
-                      <Col md={4} className="text-right">                  
+                      <Col md={4} >                  
                         <Label for="mBanco">Banco :</Label>
                       </Col>
                       <Col md={8}>                  
@@ -149,7 +164,7 @@ const EditComprobante = ({getComponent}) => {
             
           </Card>
         </Col>
-        <Col md="8">
+        <Col md="9">
           <Card> 
             <SearchsPuc/>
             <ListaComprobantes/>

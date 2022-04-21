@@ -4,14 +4,13 @@ import { Row,Col,Button, FormGroup, Input, Label,Card,CardBody,ListGroup, ListGr
 import { crudActions } from '../../../../actions'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
-import CurrencyInput from 'react-currency-input-field';
 
 const SearchcArticulos = ({getComponent}) => {
     const dispatch = useDispatch()   
     const { data  } = useSelector(state => state.articulos)  
     const { items, item } = useSelector(state => state.cotizaciones)  
     const almacenId = JSON.parse(localStorage.getItem('@userAlmacen'))  
-    const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))
+ 
     const [open, setOpen] = useState(false); 
     const [name, setName] = useState('');
     const [cantidad, setCantidad] = useState(0);

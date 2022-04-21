@@ -1,10 +1,9 @@
 import React, { useRef, useEffect }  from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { api } from "../../../../helpers";
 import { Table,Col,Row,Button } from "reactstrap";
 import ReactToPrint from "react-to-print";
 import Moment from 'react-moment'
-import QRCode from "qrcode.react";
+
 
  export class ComponentToPrint extends React.PureComponent {   
   render() {    

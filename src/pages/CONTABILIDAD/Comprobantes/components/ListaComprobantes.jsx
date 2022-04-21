@@ -51,7 +51,8 @@ const ListaComprobantes = () => {
           <thead>
               <tr>                  
                 <th width="20%">Código</th>
-                <th width="45">Cuentas Afectadas</th>                
+                <th width="35">Cuentas Afectadas</th>
+                <th width="10">Auxiliar</th>                
                 <th width="15%" className="text-center">Debe</th>            
                 <th width="15%" className="text-center">Haber</th>                
                 <th width="5%"></th>                   
@@ -62,9 +63,10 @@ const ListaComprobantes = () => {
                   {items.map((item, index) => (
                       <tr key={index}>                                           
                         <td>{item.codigo || ''}</td>                        
-                        <td className={(item.debe === '0' || item.debe === 0) ? "text-center": "text-left"}>{item.descripcion || ''}</td>                                                                                                                  
-                        <td className="text-center">{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.debe)}</td>                     
-                        <td className="text-center">{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.haber)}</td>
+                        <td className={(item.debe === '0' || item.debe === 0) ? "text-center": "text-left"}>{item.descripcion || ''}</td>  
+                        <td >{ item.auxiliar }</td>                                                                                                                  
+                        <td className="text-center">{new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(item.debe)}</td>                     
+                        <td className="text-center">{new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(item.haber)}</td>
                         <td>
                           <Button className="btn btn-danger" 
                             onClick={() => { removeItem(index)}}>
@@ -74,12 +76,12 @@ const ListaComprobantes = () => {
                       </tr>  
                       ))}
                       <tr>
-                        <td colSpan="2" className="text-center"><b>TOTAL</b> </td>
+                        <td colSpan="3" className="text-center"><b>TOTAL</b> </td>
                         <td className="text-center">
-                        <b>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.tDebe)}</b>
+                        <b>{new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(item.tDebe)}</b>
                         </td>
                         <td className="text-center">
-                          <b>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.tHaber)}</b>                          
+                          <b>{new Intl.NumberFormat({style: "currency",minimumFractionDigits: 2}).format(item.tHaber)}</b>                          
                         </td>
                       </tr>
               </tbody>
@@ -91,7 +93,7 @@ const ListaComprobantes = () => {
     <Row form>
       <Col md={2} >
           <Button
-              className="btn-md btn-warning"
+              className={(item.tDebe > 0 && item.tHaber > 0) && (item.tDebe === item.tHaber) ? "btn-md btn-warning" : "btn-md btn-warning disabled" }
               onClick={() => submitHandle()}>
               <FontAwesomeIcon icon={faSave} />  
                 Actualizar                        

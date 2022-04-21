@@ -99,7 +99,7 @@ sup {
   top: -.5em; }
 
 a {
-  color: #2091eb;
+  color: #6195b8;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects; }
@@ -1337,7 +1337,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #ffffff;
-  background-color: #2091eb; }
+  background-color: #6195b8; }
 
 .nav-fill .nav-item {
   flex: 1 1 auto;
@@ -1376,7 +1376,7 @@ input[type="button"].btn-block {
   color: #ffffff;
   text-align: center;
   white-space: nowrap;
-  background-color: #2091eb;
+  background-color: #6195b8;
   transition: width 0.6s ease; }
   @media screen and (prefers-reduced-motion: reduce) {
     .progress-bar {
@@ -1437,8 +1437,8 @@ input[type="button"].btn-block {
   .list-group-item.active {
     z-index: 2;
     color: #ffffff;
-    background-color: #2091eb;
-    border-color: #2091eb; }
+    background-color: #6195b8;
+    border-color: #6195b8; }
 
 .list-group-flush .list-group-item {
   border-right: 0;
@@ -2145,12 +2145,12 @@ button.close {
   vertical-align: text-top !important; }
 
 .bg-primary {
-  background-color: #2091eb !important; }
+  background-color: #6195b8 !important; }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #2091eb80 !important; }
+  background-color: #6195b880 !important; }
 
 .bg-secondary {
   background-color: #f4f5f7 !important; }
@@ -2215,12 +2215,12 @@ button.bg-dark:focus {
   background-color:  #e2b848 !important; }
 
 .bg-default {
-    background-color: #2091eb !important; }  
+    background-color: #6195b8 !important; }  
 
 a.bg-default:hover, a.bg-default:focus,
 button.bg-default:hover,
 button.bg-default:focus {
-  background-color: #2091eb !important; }
+  background-color: #6195b8 !important; }
 
 .bg-white {
   background-color: #ffffff !important; }
@@ -2283,7 +2283,7 @@ button.bg-darker:focus {
   border-left: 0 !important; }
 
 .border-primary {
-  border-color: #2091eb !important; }
+  border-color: #6195b8 !important; }
 
 .border-secondary {
   border-color: #f4f5f7 !important; }
@@ -4699,7 +4699,7 @@ button.bg-darker:focus {
   color: #ffffff !important; }
 
 .text-primary {
-  color: #2091eb !important; }
+  color: #6195b8 !important; }
 
 a.text-primary:hover, a.text-primary:focus {
   color: #d725bb !important; }
@@ -5220,11 +5220,11 @@ a.text-darker:hover, a.text-darker:focus {
     margin-left: 30px !important; }
 
 .btn-primary {
-  background: #2091eb;
+  background: #6195b8;
 
   background-size: 210% 210%;
   background-position: top right;
-  background-color: #2091eb;
+  background-color: #6195b8;
   transition: all 0.15s ease;
   box-shadow: none;
   color: #ffffff; }
@@ -5251,28 +5251,28 @@ a.text-darker:hover, a.text-darker:focus {
   fieldset[disabled] .btn-primary.focus,
   fieldset[disabled] .btn-primary:active,
   fieldset[disabled] .btn-primary.active {
-    background-color: #2091eb;
-    border-color: #2091eb; }
+    background-color: #6195b8;
+    border-color: #6195b8; }
   .btn-primary.btn-simple {
-    color: #2091eb;
-    border-color: #2091eb;
+    color: #6195b8;
+    border-color: #6195b8;
     background: transparent; }
     .btn-primary.btn-simple:hover, .btn-primary.btn-simple:focus, .btn-primary.btn-simple:active, .btn-primary.btn-simple:not(:disabled):not(.disabled):active {
-      color: #2091eb;
-      border-color: #2091eb;
+      color: #6195b8;
+      border-color: #6195b8;
       background-color: transparent !important;
       background-image: none !important;
       box-shadow: none; }
     .btn-primary.btn-simple.active {
-      border-color: #2091eb !important; }
+      border-color: #6195b8 !important; }
       .btn-primary.btn-simple.active:hover, .btn-primary.btn-simple.active:focus, .btn-primary.btn-simple.active:active, .btn-primary.btn-simple.active:not(:disabled):not(.disabled):active {
         color: #ffffff;
-        border-color: #2091eb;
+        border-color: #6195b8;
       
         background-color: #ba54f5 !important;
         box-shadow: none; }
   .btn-primary.btn-link {
-    color: #2091eb; }
+    color: #6195b8; }
     .btn-primary.btn-link:hover, .btn-primary.btn-link:focus, .btn-primary.btn-link:active {
       background-color: transparent !important;
       background-image: none !important;
@@ -5503,7 +5503,7 @@ a.text-darker:hover, a.text-darker:focus {
   background-color: #ffffff;
   transition: all 0.15s ease;
   box-shadow: none;
-  color: #2091eb; }
+  color: #6195b8; }
   .btn-neutral.animation-on-hover:hover {
     background-position: bottom left;
     transition: 0.3s ease-in-out; }
@@ -6355,7 +6355,7 @@ img {
   color: #ffffff; }
 
 .modal.modal-primary .modal-content {
-  background-color: #2091eb;
+  background-color: #6195b8;
   color: #ffffff; }
 
 .modal.modal-primary .modal-body p {
@@ -6989,7 +6989,7 @@ img {
   .navbar.bg-dark {
     background: #222a42 !important; }
   .navbar.bg-primary {
-    background-color: #2091eb !important; }
+    background-color: #6195b8 !important; }
   .navbar.bg-warning {
     background-color: #f9a021 !important; }
   .navbar.bg-info {
@@ -7388,7 +7388,7 @@ a {
   color: #ba54f5;
   font-weight: 300; }
   a:hover, a:focus {
-    color: #2091eb; }
+    color: #6195b8; }
 
 h1, .h1 {
   line-height: 1.05;
@@ -7466,10 +7466,10 @@ p {
     font-size: 0.75rem;
     text-transform: uppercase; }
   .blockquote.blockquote-primary {
-    border-color: #2091eb;
-    color: #2091eb; }
+    border-color: #6195b8;
+    color: #6195b8; }
     .blockquote.blockquote-primary small {
-      color: #2091eb; }
+      color: #6195b8; }
   .blockquote.blockquote-danger {
     border-color: #fd5d93;
     color: #fd5d93; }
@@ -7522,7 +7522,7 @@ hr {
   background-color: #1d8cf8; }
 
 .table > tbody > tr.table-primary > td {
-  background-color: #2091eb; }
+  background-color: #6195b8; }
 
 .table > tbody > tr.table-warning > td {
   background-color: #f9a021; }
@@ -7682,7 +7682,7 @@ hr {
 .form-check input[type="checkbox"]:checked + .form-check-sign::before,
 .form-check input[type="checkbox"]:checked + .form-check-sign::before {
   border: none;
-  background-color: #2091eb; }
+  background-color: #6195b8; }
 
 .form-check .form-check-sign::after {
   font-family: 'nucleo';
@@ -7754,14 +7754,14 @@ hr {
 .form-check-radio input[type="radio"]:checked + .form-check-sign::after {
   width: 6px;
   height: 6px;
-  background-color: #2091eb;
-  border-color: #2091eb;
+  background-color: #6195b8;
+  border-color: #6195b8;
   top: 9px;
   left: 6px;
   opacity: 1; }
 
 .form-check-radio input[type="radio"]:checked + .form-check-sign::before {
-  border-color: #2091eb; }
+  border-color: #6195b8; }
 
 .form-check-radio input[type="radio"]:checked + .form-check-sign::after {
   opacity: 1; }
@@ -8730,11 +8730,11 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 .bd-docs table .datepicker thead th,
 .bd-docs table .datepicker table thead th,
 .bd-docs table .datepicker .tim-icons {
-  color: #2091eb; }
+  color: #6195b8; }
 
 .bd-docs .bd-example .picker-switch .tim-icons,
 .bd-docs table .picker-switch .tim-icons {
-  color: #2091eb; }
+  color: #6195b8; }
 
 .bd-docs .footer .container-fluid > nav {
   display: inline-block; }
@@ -8892,9 +8892,9 @@ code {
 .input-group-focus .input-group-prepend .input-group-text,
 .input-group-focus .input-group-append .input-group-text {
   background-color: #ffffff;
-  border-color: #2091eb;
+  border-color: #6195b8;
   background-color: transparent;
-  border-color: #2091eb; }
+  border-color: #6195b8; }
 
 .input-group-focus.no-border .input-group-prepend .input-group-text,
 .input-group-focus.no-border .input-group-append .input-group-text {
@@ -8929,7 +8929,7 @@ code {
   border-left: 0 none; }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-  background-color: #76747420;
+  background-color: #86858520;
   color: #2e62f4;
   cursor: not-allowed; }
 
@@ -9221,7 +9221,7 @@ textarea.form-control {
     color: #222a42;
     border-color: rgba(29, 37, 59, 0.5); }
     .white-content .form-control:focus {
-      border-color: #2091eb; }
+      border-color: #6195b8; }
   .white-content .form-group.no-border .form-control,
   .white-content .form-group.no-border .form-control + .input-group-prepend .input-group-text,
   .white-content .form-group.no-border .form-control + .input-group-append .input-group-text,
@@ -9276,7 +9276,7 @@ textarea.form-control {
   .white-content .input-group-focus .input-group-prepend .input-group-text,
   .white-content .input-group-focus .input-group-append .input-group-text,
   .white-content .input-group-focus .form-control {
-    border-color: #2091eb; }
+    border-color: #6195b8; }
   .white-content .input-group-focus.no-border .input-group-prepend .input-group-text,
   .white-content .input-group-focus.no-border .input-group-append .input-group-text {
     background-color: rgba(222, 222, 222, 0.5); }
@@ -9695,13 +9695,14 @@ textarea.form-control {
 }
 
 .btn-barra{
-  height: 25px;
-  width: 30px;
-  font-size: 1rem;
+  height: 20px;
+  width: 25px;
+  font-size: 15px;
   border-radius: 5px !important;
-  padding-top: 2px !important;  
+  padding: 0 !important;  
+  margin: 0 !important;  
   background-color: transparent !important;
-  color: #2091eb;
+  color: #eaeaea;  
 }
 
 .btn-sample{
@@ -9712,7 +9713,7 @@ textarea.form-control {
   border-radius: 5px !important;    
   border: none !important;
   color: #eaeaea;
-  background-color: #2091eb !important;  
+  background-color: #6195b8 !important;  
   padding: 0 !important;
   box-shadow: none !important;
 }
@@ -9987,14 +9988,14 @@ textarea.form-control {
 
 
 .table-simple th{   
-  font-size: 11px !important;
-  color: #4d4d4d !important;
+  font-size: 10px !important;
+  color: #4d4d4d90 !important;
   z-index: 0;
   padding-top:8px !important;  
   padding-bottom: 5px !important;  
   padding-left: 5px !important;  
   border : solid 1px #c1c1c120 !important;  
-  background-color: #31384a25;
+  background-color: #eaeaea;
 }
 
 .table-simple tr{   
@@ -10013,7 +10014,7 @@ textarea.form-control {
 }
 
 .table-simple tbody tr:nth-child(odd) td {
-  background-color: #eaeaea90;
+  background-color: #88a5b920;
 }
 
 .table-simple > tbody > tr > td {  
@@ -10089,7 +10090,7 @@ textarea.form-control {
     padding: 5px 10px 5px 10px !important;
     font-size: 11px;
     color: #fff !important;
-    background-color: #2091eb !important; 
+    background-color: #6195b8 !important; 
   }  
   
 
@@ -10280,7 +10281,7 @@ textarea.form-control {
 /***********************************CONTENIDO***************************************/
 
 .main-contenido{
-  border: solid 1px #c1c1c130;
+  border: solid 1px #c1c1c160;
   min-height: calc(100vh - 120px) ;
   margin-top: 5px;  
   margin-left: 5px;
@@ -10321,7 +10322,7 @@ textarea.form-control {
   width: 35px;   
   margin-left: 5px;
   margin-top:3px;
-  background-color: #2091eb;
+  background-color: #6195b8;
   border-radius: 5px;  
   text-align: center;  
   font-size: 15px; 
@@ -10360,7 +10361,7 @@ textarea.form-control {
   height: 35px;
   width: 40px;   
   margin-left: 5px;
-  background-color: #2091eb;
+  background-color: #6195b8;
   border-radius: 5px;  
   text-align: center;  
   font-size: 17px;
@@ -10396,7 +10397,7 @@ textarea.form-control {
 .card .card-header p{             
   font-size: 0.75rem;
     font-weight: bold;
-    color: #2091eb;
+    color: #6195b8;
     z-index: 5;
     padding: 0 !important;
     margin: 0 !important;    
@@ -10451,7 +10452,7 @@ textarea.form-control {
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 5px;
-    color: #2091eb;
+    color: #6195b8;
     background-color: #eaeaea50;
   }
 
@@ -11192,7 +11193,7 @@ textarea.form-control {
   border-right : solid 2px #c1c1c1;
   border-bottom: solid 2px #c1c1c1;
   border-radius: 3px;
-  background-color: #2091eb20;
+  background-color: #6195b820;
   padding-top: 2px;    
 }
 
@@ -11230,7 +11231,7 @@ textarea.form-control {
   border-right :  solid 1px #c1c1c1;
   padding-top: 9px;
   padding-left: 18px;
-  background-color: #2091eb;  
+  background-color: #6195b8;  
 }
 .link-informe{
   border-right :  solid 1px #c1c1c1;
@@ -11268,7 +11269,7 @@ textarea.form-control {
   padding-top: 1px;
   padding-bottom: 3px;
   margin-bottom: 5px;
-  border-bottom: solid 2px #4d4d4d60;
+  
 }
 
 .navLeft{  
@@ -11304,7 +11305,7 @@ textarea.form-control {
 
 .nav-unity .nav-item .nav-link{
   border: 1px solid #4d4d4d90;        
-  background-color: #767474;   
+  background-color: #868585;   
   border-top-left-radius: 5px; 
   border-top-right-radius: 5px; 
   margin: 0 !important;  
@@ -11315,13 +11316,13 @@ textarea.form-control {
 }
 .nav-unity .nav-item .nav-link.active {
   border: 1px solid #4d4d4d90;            
-  background-color: #2091eb;
+  background-color: #6195b8;
 }
 
 .nav-unity .nav-item .nav-link:hover {
   border: 1px solid #c1c1c1;  
   
-  background-color: #2091eb
+  background-color: #6195b8
 }
 
 .nav-unity .nav-item .nav-link p{
@@ -11370,7 +11371,7 @@ textarea.form-control {
   border: 1px solid #c1c1c1;  
   margin-top: 2px;   
   color:#eaeaea; 
-  background-color: #2091eb;
+  background-color: #6195b8;
 }
 
 .nav-sunitu{  
@@ -11391,7 +11392,7 @@ textarea.form-control {
   margin-top: 2px;  
   padding-left: 15px;
   padding-top: 4px;  
-  background-color: #2091eb;   
+  background-color: #6195b8;   
   border-top-left-radius: 5px; 
   border-top-right-radius: 5px; 
   color: #fff;  
@@ -11756,11 +11757,13 @@ textarea.form-control {
 }
 
 .card-contenido-productos{
-  border: solid 1px #eaeaea;  
+  border: solid 1px #c1c1c170;  
   border-radius: 3px;
   padding: 5px; 
-  height: 450px;
+  height: 473px;
+  overflow-x: auto;
 }
+
 /******************/
 
 .articulo{
@@ -12034,7 +12037,7 @@ textarea.form-control {
   padding-right: 8px !important;  
   padding-top: 8px !important;  
   border-radius: 3px;
-  background-color: #2091eb;
+  background-color: #6195b8;
   color: #fff;
   height: 27px;
   width: 30px;
@@ -12240,15 +12243,11 @@ textarea.form-control {
 
 .circulu{  
   width: 25px;
-  height: 25px;
+  height: 25px;      
+  color: #eaeaea;  
+  font-size: 15px;    
   padding-left: 4px;
-  padding-right: 7px;
-  padding-top: 2px;  
-  border-radius: 20px;  
-  color: #2091eb90;
-  background-color: #fff;
-  font-size: 17px;  
-  border: solid 1px #c1c1c1;
+  padding-top: 3px;
 }
 
 .circule{  
@@ -12261,7 +12260,7 @@ textarea.form-control {
   border-radius: 20px;
   margin-top: 4px;
   margin-left: 4px;
-  color: #2091eb;
+  color: #6195b8;
   background-color: #f3f3f3;
   font-size: 20px;
   border: solid 1px #c1c1c140;
@@ -12272,7 +12271,7 @@ textarea.form-control {
   border-bottom-right-radius: 6px !important;
   z-index: 5;
   margin-left: -5px;
-  background-color: #2091eb;
+  background-color: #6195b8;
   color: #fff;
   transition: 0.3s;
 }
@@ -12282,7 +12281,7 @@ textarea.form-control {
   border-bottom-right-radius: 6px !important;
   z-index: 5;
   margin-left: -5px;
-  background-color: #2091eb;
+  background-color: #6195b8;
   color: #ffffff90;  
 }
 
@@ -12312,9 +12311,11 @@ textarea.form-control {
 
 .sub-unity{
   border-bottom : solid 1px #c1c1c1;  
-  height: 32px;  
-  margin-bottom: 8px;
-  background-color: #76747420; 
+  height: 40px;  
+  margin-bottom: 10px;
+  background-color: #88a5b9;
+  box-shadow: 2px 2px 5px #61616150;
+  padding-top:4px;
 }
 
 .left-unity{
@@ -12324,28 +12325,47 @@ textarea.form-control {
   color: #c1c1c1;
   font-size: 17px;
   font-weight: 600;  
-  
+ 
 }
 .center-unity{
-  width: 75%;  
+  width: 30%;  
   height: 30px;
-  float: left;
-  
+  float: left;  
 }
-.center-unity h6{  
-  width: 350px;    
+.center-unity h6{      
   font-size: 15px;
   padding-top: 7px;
   padding-left: 10px;
   padding-bottom: 3px;  
-  color: #2091eb;
+  color: #eaeaea;  
 }
 
+.conta-unity{
+  width: 45%;  
+  height: 30px;
+  float: left;   
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 2px;
+  margin-right: 10px;
+  background-color: #eaeaea;
+  border-radius: 3px;
+}
+.conta-unity p{
+  font-size: 10px;
+  font-weight: bold;
+  color: #6195b8;
+}
 .right-unity{
   width: 20%;  
   height: 30px;
-  float: left;
-  
+  float: left;  
+  border: solid 2px #eaeaea50;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 4px;
+  margin-right: 5px;   
+  background-color:  #6195b8;
 }
 
 .registroCalendario{  
@@ -12406,7 +12426,7 @@ textarea.form-control {
   border: solid 1px #c1c1c140;
   height: 100%;
   width: 40%;  
-  background-color: #2091eb;   
+  background-color: #6195b8;   
   float:left;
 }
 .contenidoRight h6{
@@ -12443,12 +12463,12 @@ textarea.form-control {
   padding-bottom: 12px;
   padding-left: 15px;
   padding-right: 15px;    
-  background-color: #2091eb;  
+  background-color: #6195b8;  
   font-weight: 600;
 }
 .btnMenu:hover{  
   color: #eaeaea !important;
-  background-color: #2091eb;
+  background-color: #6195b8;
   border-bottom: solid 3px #c1c1c1 !important; 
 }
 /*********MENUS**********/
@@ -12516,7 +12536,7 @@ textarea.form-control {
   border-top-right-radius: 4px;  
   font-size: 12px;
   margin:0 !important;
-  background-color: #2091eb;
+  background-color: #6195b8;
   padding-left: 5px;
   color:#eaeaea;
   }
@@ -12528,7 +12548,7 @@ textarea.form-control {
   color: #4d4d4d90;
 }
 .prosFa{  
-  color: #2091eb90;
+  color: #6195b890;
   margin-right: 4px;
 }
 
@@ -12613,7 +12633,7 @@ textarea.form-control {
   margin-top: 2px;  
   padding-left: 15px;
   padding-top: 5px;  
-  background-color: #2091eb;   
+  background-color: #6195b8;   
   border-top-left-radius: 5px; 
   border-top-right-radius: 5px; 
   color: #fff;
@@ -12624,7 +12644,7 @@ textarea.form-control {
   margin-top: 2px;  
   padding-left: 15px;
   padding-top: 5px;  
-  background-color: #767474;   
+  background-color: #868585;   
   border-top-left-radius: 5px; 
   border-top-right-radius: 5px; 
   color: #fff;
@@ -12706,12 +12726,12 @@ textarea.form-control {
 }
 
 .categoriasItem:hover{
-  border-bottom : solid 1px #2091eb50;    
+  border-bottom : solid 1px #6195b850;    
   font-size: 11px;  
   padding-left: 8px;  
   padding-top: 4px;
   padding-bottom: 3px;    
-  background-color: #2091eb;
+  background-color: #6195b8;
   color: #fff;
   text-align: right;
   margin-top: 2px;
@@ -12730,12 +12750,12 @@ textarea.form-control {
 }
 
 .categoriasItem:visited{
-  border-bottom : solid 1px #2091eb50;    
+  border-bottom : solid 1px #6195b850;    
   font-size: 11px;  
   padding-left: 8px;  
   padding-top: 4px;
   padding-bottom: 3px;    
-  background-color: #2091eb;
+  background-color: #6195b8;
   color: #fff;
   text-align: right;
   margin-top: 2px;

@@ -80,12 +80,11 @@ import ReactToPrint from "react-to-print";
 
 function Movimientos ({tipo, value1, value2}) {    
   const componentRef = useRef();   
-  const { cantidadTotal, sumaTotal, movimientos } = useSelector(state => state.informes)  
+  const { cantidadTotal,  movimientos } = useSelector(state => state.informes)  
   const user = JSON.parse(localStorage.getItem('@userUnity'))
   const dispatch = useDispatch()
   useEffect(() =>{      
-    return () =>{             
-      /*dispatch(crudActions.setReset('INFORMES_RESET'))               */
+    return () =>{                   
       dispatch({type:'INFORMES_RESET'}) 
 
     };

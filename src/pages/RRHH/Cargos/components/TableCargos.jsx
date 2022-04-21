@@ -25,10 +25,9 @@ const TableCargos = () => {
    const [pag, setpag] = useState(15);
    const {data,pagina,paginas}= useSelector(state => state.cargos)
 
-   const makeHttpRequestWithPage = useCallback((page, num) =>{
+   const makeHttpRequestWithPage =(page, num) =>{
     dispatch(crudActions.GET_DATA('CARGOS_DATA','cargos',page, num,'nombre','asc'))      
-    console.log('segui1')
-  },[]) 
+  }
 
   const deleteItem = (pky) => {                
     dispatch(crudActions.GET_DELETE('CARGOS_ADD','cargos',pky,'lista'))

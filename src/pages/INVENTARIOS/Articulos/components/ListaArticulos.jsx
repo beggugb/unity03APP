@@ -115,8 +115,8 @@ const ListaArticulos = () => {
           <div className={item.stock > 0 ?"stocki" :"stock"}>{item.stock}</div>            
         </Card>
         ))}        
-     
-        </>                                             
+        </>                  
+                
     );
 };
 export default ListaArticulos;

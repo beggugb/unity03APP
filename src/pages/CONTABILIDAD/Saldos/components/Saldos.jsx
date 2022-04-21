@@ -50,16 +50,16 @@ import ReactToPrint from "react-to-print";
                
                     
                     <td className="text-center">
-                      {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.sumaDebito)}
+                      {new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(item.sumaDebito)}
                     </td>
                     <td className="text-center">
-                      {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.sumaCredito)}
+                      {new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(item.sumaCredito)}
                     </td>
                     <td className="text-center">
-                      {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.deudor)}
+                      {new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(item.deudor)}
                     </td>
                     <td className="text-center">
-                      {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.acreedor)}
+                      {new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(item.acreedor)}
                     </td>
 
                   </tr>  
@@ -67,21 +67,21 @@ import ReactToPrint from "react-to-print";
                 <tr>  
                     <td colSpan="3"></td>                   
                     <td className="text-center"><b>                      
-                      {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.pdebito)}
+                      {new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(this.props.pdebito)}
                     </b>
                     </td>
                     
                     <td className="text-center"><b>                      
-                      {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.pcredito)}
+                      {new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(this.props.pcredito)}
                       </b>
                     </td>
                     
                     <td className="text-center"><b>                      
-                      {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.pdeudor)}
+                      {new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(this.props.pdeudor)}
                     </b></td>
                     
                     <td className="text-center"><b>                      
-                      {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.pacreedor)}
+                      {new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(this.props.pacreedor)}
                       </b></td>
                   </tr>
             </tbody>

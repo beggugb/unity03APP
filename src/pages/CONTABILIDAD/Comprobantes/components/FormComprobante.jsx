@@ -37,7 +37,8 @@ const FormComprobante = () => {
      }
 
 
-    useEffect(() => {      
+    useEffect(() => {     
+      dispatch(crudActions.GET_SEARCH('TDC_ITEM','tdcs',0,'unit')) 
       return () => {
         dispatch({type:'COMPROBANTES_RESET_ITEM'})        
       };

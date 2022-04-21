@@ -106,21 +106,21 @@ import writtenNumber from 'written-number'
                         <td>{item.codigo}</td>
                         <td className={(item.debe === '0' || item.debe === 0) ? "santxt": "text-left"}>{item.descripcion}</td>                                                                                                                                      
                         <td className="text-center">                          
-                          {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.debe)}
+                          {new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(item.debe)}
                         </td>                                             
                         <td className="text-center">                          
-                          {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.haber)}
+                          {new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(item.haber)}
                         </td>
                       </tr>  
                   ))}
                   <tr>
                   <td colSpan="2"></td>  
                   <td className="text-center">
-                    <b>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.dato.tDebe)}</b>
+                    <b>{new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(this.props.dato.tDebe)}</b>
                     
                   </td>
                   <td className="text-center">
-                  <b>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.dato.tHaber)}</b>                  
+                  <b>{new Intl.NumberFormat({style: "decimal",minimumFractionDigits: 2}).format(this.props.dato.tHaber)}</b>                  
                   </td>
                   </tr>
               </tbody>

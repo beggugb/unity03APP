@@ -16,8 +16,9 @@ const SearchsPuc = ({getComponent}) => {
     const { items, item  } = useSelector(state => state.comprobantes)  
     const [open, setOpen] = useState(false); 
     const [name, setName] = useState('');    
+    const [auxiliar, setAuxiliar] = useState('');    
     const [puc, setPuc] = useState({});
-    
+        
 
     
     const [debe, setDebe] = useState(0);
@@ -65,6 +66,7 @@ const SearchsPuc = ({getComponent}) => {
         itemAsiento.comprobanteId  = item.id;
         itemAsiento.codigo      = puc.codigo; 
         itemAsiento.descripcion = puc.descripcion;                        
+        itemAsiento.auxiliar    = auxiliar;    
         itemAsiento.debe        = parseFloat(debe)
         itemAsiento.haber       = parseFloat(haber)        
         ites.push(itemAsiento);           
@@ -85,35 +87,29 @@ const SearchsPuc = ({getComponent}) => {
  
     return (       
         <>                              
-              <Row form className="mt-2 ml-2 mr-2 mb-2">                      
-                      <Col md={7}>
-                        <FormGroup>   
-                        <Label for="eNombre">Nombres o código</Label>                 
-                          <Input 
-                            type="text" 
-                            name="name"                             
-                            id="name"  
-                            value={name || ''}  
-                            onChange={changeHandler} />
-                        </FormGroup>
-                      </Col>                 
-                      <Col md={2}>
-                        <FormGroup>   
-                        <Label for="eValor">Debe</Label>                 
-                          <Input 
-                            type="number" 
-                            name="debe"                             
-                            id="debe"                                
-                            value={debe}                          
-                            onChange={(e) => setDebe(e.target.value)} 
-                           
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col md={2}>
-                        <FormGroup>   
-                        <Label for="eValor">Haber</Label>                 
-                          <Input 
+          <Row form className="mt-2 ml-2 mr-2 mb-2">                      
+            <Col md={5}>
+              <FormGroup>   
+                <Label for="eNombre">Nombres o código</Label>                 
+                <Input type="text" name="name" id="name" value={name || ''} onChange={changeHandler} />
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>   
+                <Label for="eAuxiliar">Auxiliar</Label>                 
+                <Input type="text" name="auxiliar" id="auxiliar" value={auxiliar || ''} onChange={(e) => {setAuxiliar(e.target.value)}} />
+              </FormGroup>
+            </Col>                 
+            <Col md={2}>
+              <FormGroup>   
+                <Label for="eValor">Debe</Label>                 
+                <Input type="number" name="debe" id="debe" value={debe} onChange={(e) => setDebe(e.target.value)} />
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>   
+                <Label for="eValor">Haber</Label>                 
+                <Input 
                             type="number" 
                             name="haber"                             
                             id="haber"    
