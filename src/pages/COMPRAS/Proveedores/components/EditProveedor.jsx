@@ -1,20 +1,27 @@
 import React,{ useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { Row,Col,Button, Form, FormGroup, Input, Label, Card, CardBody } from "reactstrap"
+import { Row,Col,Button, Form, Modal, FormGroup, ModalBody, Input, Label, Card, CardBody } from "reactstrap"
 import Select from 'react-select'  
 import { crudActions } from '../../../../actions'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faMapMarkerAlt, faSave, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import ProveedorImagen from './ProveedorImagen'
 import { tiposPersona, tiposProveedor } from "../../../../helpers/dataLoad";
 import { defaultVal } from "../../../../helpers/funciones";
 import { locations, ciudades } from "../../../../helpers/locations";
 import { custom } from '../../../../helpers/customStyles'
+import Mapa from './Mapa'
 
 const EditProveedores = ({getComponent}) => {
     const dispatch = useDispatch()  
     const item = useSelector(state => state.proveedores.item)   
     const [citys, setcitys] = useState([]);
+    const [ modalView, setmodalView ] = useState(false)
+
+    const toggleMapaView = () => {    
+      let est = modalView === true ? false : true;             
+      setmodalView(est)                 
+    };
 
     const changeHandler = event => {    
         const { name, value } = event.target  
@@ -27,12 +34,6 @@ const EditProveedores = ({getComponent}) => {
       let datc = ciudades.filter(d => (d.indice === indice) )  
       setcitys(datc)
   }
-    const changesCiudades = event => {                  
-      const {value} = event ? event : ''               
-      dispatch(crudActions.SET_CHANGE('PROVEEDORES_CHANGE','ciudad',value))   
-      
-    }
-      
    
     const changesHandler = (event,name) => {                     
         const {value} = event ? event : ''        
@@ -57,19 +58,20 @@ const EditProveedores = ({getComponent}) => {
     return (             
     <> 
     <Row>
-      <Col>
-        <Card>
-            <CardBody>
-             <Row>
-               <Col md="7">
-               <Button className="bg-success text-white" onClick={()=> getComponent('data',1)}>
-                 <FontAwesomeIcon icon={faArrowLeft} /> LISTA PROVEEDORES
-               </Button>
-               </Col> 
-              </Row>  
-            </CardBody>   
-        </Card>       
+      <Col md="3" className="btnBack">       
+        <Button className="bg-success text-white" onClick={()=> getComponent('data',1)}>
+            <FontAwesomeIcon icon={faArrowLeft} /> LISTA PROVEEDORES
+        </Button>        
       </Col>  
+      <Col md="8"> 
+        </Col>
+        <Col md="1">  
+          <Button 
+            className="bg-danger text-white" 
+            onClick={()=> toggleMapaView() }>
+            <FontAwesomeIcon icon={faMapMarkerAlt} /> 
+          </Button>              
+        </Col> 
       </Row>
       <Row>
         <Col>
@@ -149,14 +151,40 @@ const EditProveedores = ({getComponent}) => {
                   </Col>                                          
                 </Row>
                 <Row form>
-                  <Col md={12}>
+                  <Col md={6}>
                     <FormGroup>
                       <Label for="direccion">Dirección</Label>
                         <Input type="text" name="direccion" id="direccion" 
                           value={item.direccion || ''}
                           onChange={ (e) => changeHandler(e)} />    
                     </FormGroup>    
-                  </Col>                                    
+                  </Col>  
+                  <Col md={3}>
+                    <FormGroup>
+                      <Label for="flatitude">Latitude</Label>
+                      <Input
+                        id="latitude"
+                        name="latitude"                    
+                        type="text"
+                        value={item.latitude || ''}
+                        onChange={ (e) => changeHandler(e)}
+                        readOnly={true}
+                        />
+                    </FormGroup>
+                  </Col>
+                  <Col md={3}>
+                  <FormGroup>
+                    <Label for="flongitude">Longitude</Label>
+                    <Input
+                      id="longitude"
+                      name="longitude"                    
+                      type="text"
+                      value={item.longitude || ''}
+                      onChange={ (e) => changeHandler(e)}    
+                      readOnly={true}                  
+                    />
+                  </FormGroup>
+                  </Col>                                                   
                 </Row>
                 <Row form>
                   <Col md={6}>
@@ -267,6 +295,15 @@ const EditProveedores = ({getComponent}) => {
       </Card>
         </Col>          
       </Row>
+
+      <Modal isOpen={modalView} toggle={toggleMapaView} >
+        <Button className="btn-view btn-danger"  onClick={() => toggleMapaView()} >
+          <FontAwesomeIcon icon={faTimes} />
+        </Button>
+        <ModalBody>         
+            <Mapa/>
+        </ModalBody>
+      </Modal>
     </>                                            
     );
 };

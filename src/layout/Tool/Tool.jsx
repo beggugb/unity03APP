@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion, faBell, faEnvelope, faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import Empresa from "../../pages/SECURITY/Empresa/EditEmpresa.jsx"
 import Usuarios from "../../pages/SECURITY/Usuarios/UsuariosView.jsx"
+import Sucursales from "../../pages/SECURITY/Sucursales/SucursalesView.jsx"
 import Moment from "react-moment";
 
 const override = css`
@@ -53,9 +54,9 @@ function Tool(){
             return Empresa;   
           case "Usuarios":
             return Usuarios;     
-          /*case "Tickets":
-            return Tickets;
-          case "Cotizaciones":
+          case "Sucursales":
+            return Sucursales;
+          /*case "Cotizaciones":
             return Cotizaciones;          
           default:
             return null;*/

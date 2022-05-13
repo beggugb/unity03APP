@@ -37,9 +37,9 @@ const TableCompras = ({getComponent}) => {
       };
   }, []);
 
-  const setIndicador = (pky,est,monto) => {            
+  const setIndicador = (pky,est,monto,nroItems) => {            
     let iok = pky === indicador  ? 0 : pky
-    dispatch({type:'COMPRAS_INDICADOR',value:iok,estado:est,indicadorTotal:monto}) 
+    dispatch({type:'COMPRAS_INDICADOR',value:iok,estado:est,indicadorTotal:monto,cantidad:nroItems})  
   };
 
   return(
@@ -69,7 +69,7 @@ const TableCompras = ({getComponent}) => {
                       <tr key={index}>                                            
                         <td >                       
                         <Input type="checkbox" 
-                        onChange={() => { setIndicador(item.id, item.estado, item.totalGeneral) }} 
+                        onChange={() => { setIndicador(item.id, item.estado, item.totalGeneral, item.nroItems) }} 
                         checked={ item.id === indicador ? true : false}
                         /></td>
                         <td>{item.id}</td>

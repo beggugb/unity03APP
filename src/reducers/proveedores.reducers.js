@@ -22,12 +22,23 @@ const initialState = {
       formaPago:'',
       banco:1,
       cuenta:'',  
-      observaciones:''
+      observaciones:'',
+      latitude:0,
+      longitude:0 
     }    
   };
   
 export function proveedores(state = initialState, action) {
     switch (action.type) {
+      case "PROVEEDORES_CHANGE_LOCATION":
+          return {          
+          ...state,
+          item:
+          {...state.item,
+            latitude: action.latitude,
+            longitude: action.longitude
+          }
+        }; 
       case "PROVEEDORES_INDICADOR":
         return {
           ...state,

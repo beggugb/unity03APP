@@ -23,7 +23,7 @@ const ListaItems = () => {
    }
 
   const submitHandle = () => {   
-    if(cantidad != 0)
+    if(cantidad !== 0)
       {            
       let ites = [...items]
       let cTotal = item.nroItems

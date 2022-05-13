@@ -12,10 +12,10 @@ const UsuariosView = () => {
       <div className="main-contenido">    
          <div className="card-contenidos"> 
          <Row>
-            <Col md={5} className="marco">
+            <Col md={3} className="marco">
             <EditUsuario/>
             </Col>
-            <Col md={7} className="marco">
+            <Col md={9} className="marco">
             <TableUsuarios/>
             </Col>            
          </Row>

@@ -1,4 +1,4 @@
-import React,{useEffect, useCallback, useState  } from "react";
+import React,{ useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { crudActions } from '../../../../actions'
 import { Card } from "reactstrap";
@@ -6,7 +6,7 @@ import {toastr} from 'react-redux-toastr'
 import { api } from "../../../../helpers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { parse } from "@fortawesome/fontawesome-svg-core";
+
 
 const ListaArticulos = () => {
     const dispatch = useDispatch()    
@@ -74,7 +74,7 @@ const ListaArticulos = () => {
     }  
 
 
-    const makeHttpRequestWithPage = useCallback((page,num) =>{          
+    const makeHttpRequestWithPage = (page,num) =>{          
       let iok ={
         "almacenId": almacenId.id,
         "pagina":page,
@@ -85,7 +85,7 @@ const ListaArticulos = () => {
         "stock":3
       } 
       dispatch(crudActions.GET_SEARCH('ARTICULOS_DATA','almacenes',iok)) 
-     },[]) 
+     }
    
     
     useEffect(() => {

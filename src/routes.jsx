@@ -85,6 +85,12 @@ export const InformeInventariosRouter = [
     {"name":"Movimientos","link":"imovimientos"}    
 ]
 
+export const ConsolidadoRouter = [    
+    {"name":"Existencias","link":"inicio"},    
+    {"name":"Cajas","link":"icajas"},    
+    {"name":"Consolidado","link":"iconsolidado"}
+]
+
 
 
 

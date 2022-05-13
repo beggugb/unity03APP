@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useCallback} from "react";
+import React,{ useState, useEffect } from "react";
 import { FormGroup, Label, Table, Row, Col, Card, CardBody, CardFooter, Input  } from "reactstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { crudActions } from '../../../../actions'
@@ -20,7 +20,7 @@ const TableProveedores = ({getComponent}) => {
 
 
   const changeSelect = (pky) => {        
-    const {value, label} = pky
+    const {value}  = pky
     setpag(value)
     makeHttpRequestWithPage(1,value)
   };

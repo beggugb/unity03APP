@@ -37,7 +37,9 @@ const initialState = {
       cantidadTotal:0,
       subTotal:0,
       iva:0,
-      impuesto:0      
+      impuesto:0,
+      cliente:'',
+      email:''      
     }    
   };
   
@@ -48,7 +50,9 @@ export function cotizaciones(state = initialState, action) {
           ...state,
           indicador: action.value,
           estado: action.estado,
-          indicadorTotal: action.indicadorTotal
+          indicadorTotal: action.indicadorTotal,
+          cliente: action.cliente,
+          email: action.email
         };
        case "COTIZACIONES_VIEW":
         return {

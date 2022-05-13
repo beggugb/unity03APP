@@ -13,7 +13,7 @@ import { customi } from '../../../helpers/customStyles'
 import es from 'date-fns/locale/es';
 registerLocale('es', es)
 
-const tipos   =  [{"value":"0","label":"--Todos--"},{"value":"Ingreso","label":"Ingreso"},{"value":"Salida","label":"Salida"}];
+const tipos   =  [{"value":"0","label":"--Todos--"},{"value":"Baja","label":"Baja"},{"value":"Traspaso","label":"Traspaso"}];
               const defaultVal = (options, valor) =>{
                 return options.filter(item =>
                     item.value === valor

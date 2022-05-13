@@ -9,6 +9,7 @@ const initialState = {
     resCompras:[],
     pagosPendientes:[],     
     pagosRealizados:[],
+    cajas:[],
     compras:[],
     montoTotal: 0,
     pagoTotal: 0,
@@ -72,7 +73,10 @@ const initialState = {
   itemsMinimo:[],
   itemsActual:[],
   sumaTotal:0,
-  cantidadTotal: 0
+  cantidadTotal: 0,
+  montoTotal:0,
+  montoIngresol:0,
+  montoEgreso:0
   };
   
 export function informes(state = initialState, action) {
@@ -249,7 +253,9 @@ export function informes(state = initialState, action) {
                 ...state,                
                 cajas: action.response.data,
                 total: action.response.total,
-                suma: action.response.suma
+                montoTotal: action.response.suma,
+                montoEgreso: action.response.egreso,
+                montoIngreso: action.response.ingreso
               };       
         case "INFORMES_CATEGORIAS":
               return {          
@@ -298,8 +304,7 @@ export function informes(state = initialState, action) {
           pagos:[],          
           pagoTotal:0,
           pagina: 0,
-          paginas: 0,
-          montoTotal:0,                             
+          paginas: 0,                                   
           total: 0,
           tickets:[],          
           resVentas: initialState.resVentas,
@@ -310,7 +315,11 @@ export function informes(state = initialState, action) {
           ventaT :initialState.ventaT, 
           ventasItem: [], 
           ventasLabel: [], 
-          ventas: []
+          ventas: [],
+          montoTotal:0,
+          montoIngresol:0,
+          montoEgreso:0,
+          cajas: []          
         }; 
       
       case "INVENTARIOS_INFORMES_RESET":

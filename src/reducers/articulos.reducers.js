@@ -1,6 +1,7 @@
 const initialState = {
   data: [],
   items: [], 
+  existencias:[],
   pagina: 0,
   paginas: 0,
   total: 0,
@@ -10,7 +11,7 @@ const initialState = {
   estado:true,
   tipo:'pdf',
   indicador:0,
-  item:{   
+  item:{       
     id:'',   
     codigo: '',
     codigoBarras: '',      
@@ -21,6 +22,7 @@ const initialState = {
     colores:[{"value":"amarillo","label":"amarillo"}],
     marcaId:1,
     industria:'',
+    subcategoria:'',
     tipo:'',
     descripcion:'',
     inCatalogo: false,
@@ -83,6 +85,12 @@ export function articulos(state = initialState, action) {
       case "ARTICULOS_ITEM":
         return {
           ...state,
+          item: action.response.articulo,
+          existencias: action.response.existencias
+      };
+      case "ARTICULOS_SINGLE_ITEM":
+        return {
+          ...state,
           item: action.response
       };  
       case "ARTICULOS_DATA":
@@ -115,12 +123,14 @@ export function articulos(state = initialState, action) {
       return {
         ...state,
         item: initialState.item,
+        existencias:[],
         indicador: 0
       };
     case "ARTICULOS_RESET":
       return {
         ...state,
         item: initialState.item,
+        existencias:[],
         aitems:[], 
         data: [],
         pagina: 0,

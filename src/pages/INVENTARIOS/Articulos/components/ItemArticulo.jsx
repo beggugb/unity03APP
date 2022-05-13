@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import {  
     Row,
     Col,
-    FormGroup, Input, Card,CardBody,ListGroup, ListGroupItem
+    FormGroup, Input, Card,CardBody,ListGroup, ListGroupItem, Button
   } from "reactstrap"
 import { crudActions } from '../../../../actions'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ItemArticulo = ({getComponent}) => {
     const dispatch = useDispatch()   
@@ -62,7 +64,14 @@ const ItemArticulo = ({getComponent}) => {
                             name="name"                             
                             id="name"  
                             value={name || ''}  
-                            onChange={changeHandler} />
+                            onChange={changeHandler}/> 
+                            {
+                              name ? 
+                              <Button className="volatil" onClick={(e) => {clearInput()}}>
+                                <FontAwesomeIcon icon={faTimes}   />
+                              </Button>
+                              : null
+                            }                                                       
                         </FormGroup>
                       </Col>                     
                     </Row>                  

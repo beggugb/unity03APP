@@ -1,4 +1,4 @@
-const initialState = {    
+const initialState = {      
     item:{
       id:'',
       nombre:'',
@@ -20,8 +20,15 @@ const initialState = {
       pais:'',
       moneda:'',
       labelMoneda:'',
-
-    }
+    },
+    licencia:{
+      id:'',
+      licencia:'',
+      fechaVencimiento:'',
+      nombres:''    
+    },
+    estado:false,
+    message:''    
   };
   
 export function empresa(state = initialState, action) {
@@ -33,12 +40,27 @@ export function empresa(state = initialState, action) {
           {...state.item,
             [action.props]: action.value
           }
-        };      
-      case "EMPRESA_ITEM":
+        };    
+            
+      case "LICENCIAS_RESET":
           return {
             ...state,
-            item: action.response
-          };        
+            licencia: initialState.licencia,
+            estado: false,
+            message: ''
+          };      
+      case "EMPRESA_LICENCIA":
+          return {
+            ...state,
+            licencia: action.response.result.cliente,
+            estado: action.response.result.estado,
+            message: action.response.message
+          };    
+      case "EMPRESA_ITEM":
+          return {
+              ...state,
+              item: action.response
+         };         
       case "EMPRESA_RESET_ITEM":
         return {
           ...state,

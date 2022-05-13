@@ -14,9 +14,8 @@ import ReactToPrint from "react-to-print";
         <div className="report-header">        
             <Row className="crl">
               <Col md={12}>
-              <h6 className="text-center pio"> <b>Compra # {this.props.dato.id}</b></h6>              
-              <h5 className="text-center pio"> Origen : {this.props.dato.origen}</h5>
-              <h5 className="text-center pio"> Fecha : {this.props.dato.fechaCompra}</h5>             
+              <h6 className="text-center pio"> <b>Compra # {this.props.dato.id}</b></h6>                           
+              <h5 className="text-center pio"> <b>Fecha :</b> {this.props.dato.fechaCompra}</h5>             
               </Col>            
             </Row>
         </div>
@@ -31,7 +30,15 @@ import ReactToPrint from "react-to-print";
                   <td>{this.props.dato.nroItems}</td>                                                            
                   <td><b>Usuario : </b></td>
                   <td>{this.props.dato.usuario.nombres || ''} </td>
-                </tr>                
+                </tr>   
+
+                <tr>                      
+                  <td><b>Origen :</b></td>
+                  <td>{this.props.dato.origen || ''}</td>                                                            
+                  <td><b>Almacen destino : </b></td>
+                  <td>{this.props.dato.almacen.nombre || ''} </td>
+                </tr>        
+
                 <tr>      
                   <td><b>Total : </b></td>
                   <td>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.dato.totalGeneral)}</td>                     
@@ -48,10 +55,10 @@ import ReactToPrint from "react-to-print";
             <thead>
               <tr>  
                 <th width="20%" >Código</th>
-                <th width="50%">Nombre</th>                                
+                <th width="40%">Nombre</th>                                
                 <th width="10%">Costo</th>
-                <th width="10%">Cantidad</th>                
-                <th width="10%">Total</th>                                             
+                <th width="15%">Cantidad</th>                
+                <th width="15%">Total</th>                                             
               </tr>
           </thead>
           {this.props.data && (

@@ -13,7 +13,8 @@ import Select from 'react-select'
 const FormVenta = () => {
     const dispatch = useDispatch()  
     const { item, items } = useSelector(state => state.ventas)   
-    const usuario = JSON.parse(localStorage.getItem('@userUnity'))    
+    const usuario = JSON.parse(localStorage.getItem('@userUnity'))  
+    const almacen = JSON.parse(localStorage.getItem('@userAlmacen'))  
 
     const changeHandler = event => {    
         const { name, value } = event.target          
@@ -42,6 +43,7 @@ const FormVenta = () => {
       let eItem = item                    
       eItem.usuarioId = usuario.id            
       eItem.detalle   = item.observaciones +', '+item.clients
+      eItem.almacenId = almacen.id
       let xcode={
         item: eItem,
         items:items
@@ -68,12 +70,12 @@ const FormVenta = () => {
 return (              
     <>                                  
     <Row form>
-      <Col md={9}>
+      <Col md={11}>
         <SingleCliente/>                                                     
       </Col>                                                                               
     </Row>
     <Row form>
-            <Col md={12}>
+            <Col md={6}>
               <FormGroup>
                 <Label for="fpago"> Forma de pago </Label>
                   <Select                                                               
@@ -86,11 +88,8 @@ return (
                     value={defaultVal(formaPagos,item.formaPago)}
                     onChange={ (e) => changesHandler(e,'formaPago')}/>
               </FormGroup>   
-            </Col>
-          </Row>
-
-          <Row form>
-            <Col md={12}>
+            </Col>      
+            <Col md={6}>
               <FormGroup>
                 <Label for="fentrega"> Forma de entrega </Label>
                   <Select                                                               
@@ -106,7 +105,7 @@ return (
             </Col>
           </Row>
           <Row form>
-            <Col md={12}>
+            <Col md={6}>
             <FormGroup>
                 <Label for="fiva"> Impuesto </Label>
                   <Select                                                               
@@ -119,10 +118,8 @@ return (
                     value={defaultVal(impuestos,item.iva)}
                     onChange={ (e) => changesHandler(e,'iva')}/>
               </FormGroup>   
-            </Col>
-          </Row>  
-          <Row form>
-            <Col md={12}>
+            </Col>          
+            <Col md={6}>
               <FormGroup>
                 <Label for="ndescuento">Descuento</Label>
                   <Input 
@@ -148,7 +145,7 @@ return (
     <Row>  
       <Col md={7}>
         <Button
-          className={item.id ?"btn-md btn-warning mt-4" : "btn-md btn-info mt-4"}
+          className={ (item.observaciones && item.clienteId) ? (item.id ? "btn-md btn-warning mt-4" : "btn-md btn-info mt-4") : "btn-md disabled btn-info mt-4"}
           onClick={() => submitHandle()}>
           <FontAwesomeIcon icon={faSave} />  
           {' '} {item.id ? " Actualizar" : " Guardar"}

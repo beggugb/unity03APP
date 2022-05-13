@@ -36,7 +36,7 @@ const InicioView = () => {
       type: 'bar'
   },
   title: {
-      text: 'Compras'
+      text: 'Compras x producto'
   },
   subtitle: {
       text: 'Gestión: '+ gestion
@@ -118,7 +118,7 @@ const InicioView = () => {
       type: 'line'
   },
   title: {
-      text: 'Compras'
+      text: 'Compras x mes'
   },
   subtitle: {
       text: 'Gestión: '+ gestion
@@ -157,7 +157,7 @@ const InicioView = () => {
           <Card>
           <CardHeader>
             <div className="card-icono"><FontAwesomeIcon icon={faShoppingCart} /></div>
-              <CardTitle className="text-dark"> COMPRAS CANTIDAD</CardTitle>
+              <CardTitle className="text-dark mt-2"> Nº COMPRAS</CardTitle>
               <p>{compraT.total}</p>                                   
               </CardHeader>
           </Card>    
@@ -166,7 +166,7 @@ const InicioView = () => {
           <Card>
           <CardHeader>
               <div className="card-icono"><FontAwesomeIcon icon={faReceipt} /></div>
-              <CardTitle className="text-dark"> COMPRAS VALOR</CardTitle>
+              <CardTitle className="text-dark mt-2"> SUMATORIA COMPRAS</CardTitle>
               <p>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(compraT.suma)}</p>                                    
               </CardHeader>
           </Card>    

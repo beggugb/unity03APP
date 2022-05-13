@@ -16,7 +16,7 @@ const page =[{"value":'observaciones',"label":'glosa'},
 
 const SearchCompras = ({getComponent}) => {
     const dispatch = useDispatch()    
-    const { total, indicador, indicadorTotal, estado}= useSelector(state => state.compras)
+    const { total, indicador, indicadorTotal, indicadorCantidad, estado}= useSelector(state => state.compras)
     const usuario = JSON.parse(localStorage.getItem('@userUnity'))
     const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))
     const [prop, setProp] = useState('observaciones');
@@ -49,7 +49,7 @@ const SearchCompras = ({getComponent}) => {
       iok.value = value
       iok.prop  = prop
       iok.usuarioId = usuario.id
-      iok.rolId = usuario.rolId
+      iok.rolId = usuario.rolId      
       dispatch(crudActions.GET_SEARCH('COMPRAS_DATA','compras',iok))              
       console.log(iok)
    }  
@@ -93,7 +93,8 @@ const SearchCompras = ({getComponent}) => {
       "usuarioId" : usuario.id,
       "rolId": usuario.rolId,
       "nroPagos": cuota,
-      "total": indicadorTotal     
+      "total": indicadorTotal,    
+      "cantidad" :indicadorCantidad       
     }
            
     let xcode = {
@@ -183,8 +184,7 @@ const enviar = event => {
                    <FontAwesomeIcon icon={faFilePdf} /> </Button> 
                  <Button className={indicador === 0  || estado === 'cerrado' ? "btr bg-default text-white disabled": "btr bg-default text-white"} onClick={()=> toggleModalViewx()} >
                    <FontAwesomeIcon icon={faCoins} /></Button>      
-                   <Button className={indicador === 0  || estado === 'cerrado' ? "btr bg-default text-white disabled": "btr bg-default text-white"} onClick={()=> toggleModalViewy()} >
-               <FontAwesomeIcon icon={faEnvelope} /></Button>               
+               
           </ButtonGroup>
         </Col>
         <Col md={1} className="cards text-right">

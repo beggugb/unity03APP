@@ -34,10 +34,12 @@ import { contratos } from "./contratos.reducers";
 import { cargos } from "./cargos.reducers";
 import { ventaitems } from "./ventaitems.reducers";
 import { unidades } from "./unidades.reducers";
+import { movimientos } from "./movimientos.reducers"
 
 const rootReducer = combineReducers({
     usuarios,
     ventaitems,
+    movimientos,
     unidades,
     cargos,
     contratos,

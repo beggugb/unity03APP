@@ -26,8 +26,7 @@ const FormProspecto = () => {
     const submitHandle = () => {       
       let dato = item                    
       dato.articuloId = itt.id ? itt.id : null       
-      dispatch(crudActions.SET_UPDATE('PROSPECTOS_ADD','prospectos',dato,'unit'))            
-        
+      dispatch(crudActions.SET_UPDATE('PROSPECTOS_ADD','prospectos',dato,'unit'))                    
      }  
     useEffect(() => {      
       return () => {

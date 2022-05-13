@@ -33,9 +33,11 @@ const TableCotizaciones = ({getComponent}) => {
      };
  }, []);
 
- const setIndicador = (pky,est,monto) => {            
-   let iok = pky === indicador  ? 0 : pky
-   dispatch({type:'COTIZACIONES_INDICADOR',value:iok,estado:est,indicadorTotal:monto}) 
+ const setIndicador = (itt) => {          
+  /*.id, item.estado, item.total  */
+   let iok = itt.id === indicador  ? 0 : itt.id
+   dispatch({type:'COTIZACIONES_INDICADOR',value:iok,estado:itt.estado,indicadorTotal:itt.total,cliente:itt.cliente,email:itt.email}) 
+   /*console.log(itt)*/
  };
 
    
@@ -65,7 +67,7 @@ return(
                     <tr key={index} >                      
                       <td >                       
                       <Input type="checkbox" 
-                      onChange={() => { setIndicador(item.id, item.estado, item.total) }} 
+                      onChange={() => { setIndicador(item) }} 
                       checked={ item.id === indicador ? true : false}
                       /></td>
                       <td>{item.id}</td>

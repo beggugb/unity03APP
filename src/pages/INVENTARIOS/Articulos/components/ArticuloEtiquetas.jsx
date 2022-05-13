@@ -7,6 +7,7 @@ import ReactToPrint from "react-to-print";
 export class ComponentToPrint extends React.PureComponent {
   render() {    
     const etiquetas = [0,1,2,3]
+    const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))
     return (
       <>
     <div className="reporte">     
@@ -27,7 +28,7 @@ export class ComponentToPrint extends React.PureComponent {
                   {this.props.data.nombre}
                   </Col>
                   <Col md="6" className="repDesr">
-                  <Barcode value={this.props.data.codigoBarras} width={1} height={15} fontSize={11} />
+                  <Barcode value={this.props.data.codigo} width={1} height={15} fontSize={11} />
                   </Col>
                 </Row>                            
                 <Row>
@@ -53,7 +54,7 @@ export class ComponentToPrint extends React.PureComponent {
                   {this.props.data.nombre}
                   </Col>
                   <Col md="6" className="repDesr">
-                  <Barcode value={this.props.data.codigoBarras} width={1} height={15} fontSize={11} />
+                  <Barcode value={this.props.data.codigo} width={1} height={15} fontSize={11} />
                   </Col>
                 </Row>                            
                 <Row>
@@ -73,16 +74,32 @@ export class ComponentToPrint extends React.PureComponent {
          <Col className="text-center">
             {etiquetas.map((tem,index) =>                
               <div key={index} className="barras">
-                <div className="etiquetabr">
-                <Barcode value={this.props.data.codigoBarras} width={1} height={20} fontSize={11} />
+                <div className="etiquetabr">                  
+                  <div className="marki">                  
+                    <Barcode value={this.props.data.codigo} width={1.2} height={22} fontSize={11} />                  
+                  </div>                    
+                  <div className="price">                    
+                    {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.data.precioVenta)}
+                  </div>
                 </div>
-                <div className="etiquetabr">
-                <Barcode value={this.props.data.codigoBarras} width={1} height={20} fontSize={11} />
+                <div className="etiquetabr">                  
+                  <div className="marki">                  
+                    <Barcode value={this.props.data.codigo} width={1.2} height={22} fontSize={11} />                  
+                  </div>                    
+                  <div className="price">                    
+                    {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.data.precioVenta)}
+                  </div>
                 </div>
-                <div className="etiquetabr">
-                <Barcode value={this.props.data.codigoBarras} width={1} height={20} fontSize={11} />
-                </div>                            
-              </div>
+                <div className="etiquetabr">                  
+                  <div className="marki">                  
+                    <Barcode value={this.props.data.codigo} width={1.2} height={22} fontSize={11} />                  
+                  </div>                    
+                  <div className="price">                    
+                    {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.data.precioVenta)}
+                  </div>
+                </div>
+                                  
+              </div>              
             )}
          </Col> 
         </Row>              

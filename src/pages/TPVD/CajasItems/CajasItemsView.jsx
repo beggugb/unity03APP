@@ -2,8 +2,7 @@ import React, { useState,useEffect } from 'react';
 
 import {  useDispatch } from 'react-redux'
 import {  Row, Col } from "reactstrap"
-import SubMenu from '../../../components/subCaja.jsx';
-import { CajaRouter } from '../../../routes'
+
 import { cajaActions } from '../../../actions'
 import CajasItemsTable from './components/CajasItemsTable'
 import CajaDetalle from '../Cajas/components/CajaDetalle'
@@ -22,8 +21,7 @@ function CajasItemsView({...props}) {
 
   return (
         <div className="content">     
-          <div className="main-contenido">    
-          <SubMenu items={CajaRouter} prop='Items'/> 
+          <div className="main-contenido">              
             <Row>
               <Col md="4">
                 <CajaDetalle/>                                

@@ -34,6 +34,7 @@ import ReactToPrint from "react-to-print";
               <tr>  
                 <th width="5%" className="text-dark">Nº</th>
                 <th width="10%" className="text-dark">Fecha</th>
+                <th width="10%" className="text-dark">Tipo</th>
                 <th width="30%" className="text-dark">Motivo</th>                                    
                 <th width="10%" className="text-dark">Origen</th>
                 <th width="10%" className="text-dark">Destino</th>                                                                                                               
@@ -45,9 +46,10 @@ import ReactToPrint from "react-to-print";
             <tbody>
                 {this.props.pdata.map((item) => (
                   <tr key={item.id}>  
-                    <td>{item.id}</td> 
+                    <td>{item.id}</td>                     
                     <td><Moment format="DD-MM-YYYY">{item.fecha}</Moment></td>                                                       
-                    <td>{item.observaciones || ''}</td>                                                                              
+                    <td>{item.tipo}</td>
+                    <td>{item.motivo || ''}</td>                                                                              
                     <td>{item.origen}</td>
                     <td>{item.destino}</td>
                     <td>{item.nroItems}</td>                    

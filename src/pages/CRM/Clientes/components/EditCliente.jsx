@@ -1,6 +1,6 @@
 import React,{ useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { TabPane, TabContent, Nav, NavItem, NavLink,Row,Col,Button, Form, FormGroup, Input, Label, Card, CardBody } from "reactstrap"
+import { TabPane, TabContent, Nav, NavItem, Modal, ModalBody, NavLink,Row,Col,Button, Form, FormGroup, Input, Label, Card, CardBody } from "reactstrap"
 import Select from 'react-select'  
 import { crudActions } from '../../../../actions'
 import { locations, ciudades } from "../../../../helpers/locations";
@@ -8,11 +8,12 @@ import { tipoCliente, grupoCliente } from "../../../../helpers/dataLoad";
 import { defaultVal } from "../../../../helpers/funciones";
 import { custom } from '../../../../helpers/customStyles'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave, faArrowLeft   } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faTimes, faArrowLeft , faMapMarkerAlt  } from "@fortawesome/free-solid-svg-icons";
 import ClienteImagen from './ClienteImagen'
 import ClienteNit from './ClienteNit'
 import ClienteCi from './ClienteCi'
 import TableVentasCliente from '../../../VENTAS/Ventas/components/TableVentasCliente'
+import Mapas from './Mapas'
 
                     
 const EditClientes = ({getComponent}) => {
@@ -23,8 +24,13 @@ const EditClientes = ({getComponent}) => {
     const [iok2, setiok2] = useState(false);
     const [iok3, setiok3] = useState(false);
     const [tab, settab] = useState('1');
+    const [ modalView, setmodalView ] = useState(false)
 
-    
+    const toggleMapaView = () => {    
+      let est = modalView === true ? false : true;             
+      setmodalView(est)                 
+    };
+
     const changeHandler = event => {          
         const { name, value } = event.target  
         dispatch(crudActions.SET_CHANGE('CLIENTES_CHANGE',name,value))  
@@ -44,7 +50,7 @@ const EditClientes = ({getComponent}) => {
       setcitys(datc)
   }
 
-    
+  
    
   
     const submitHandle = event => {       
@@ -86,6 +92,9 @@ const EditClientes = ({getComponent}) => {
           break;  
       }      
     }
+
+ 
+
     return (              
       <>
      <Row>        
@@ -94,7 +103,16 @@ const EditClientes = ({getComponent}) => {
             <FontAwesomeIcon icon={faArrowLeft} /> LISTA CLIENTES
           </Button>              
         </Col>  
-      </Row>
+        <Col md="8"> 
+        </Col>
+        <Col md="1">  
+          <Button 
+            className="bg-danger text-white" 
+            onClick={()=> toggleMapaView() }>
+            <FontAwesomeIcon icon={faMapMarkerAlt} /> 
+          </Button>              
+        </Col>  
+      </Row>      
       <Row>      
         <Col>
         <div className="nav-sunitys" expand="lg">            
@@ -124,7 +142,7 @@ const EditClientes = ({getComponent}) => {
         <Card>
           <CardBody>
           <TabContent activeTab={tab}>
-            <TabPane tabId="1">
+            <TabPane tabId="1">      
             <Form onSubmit={ submitHandle} className="mb-3">   
                 <Row form>
                   <Col md={2}>
@@ -175,7 +193,7 @@ const EditClientes = ({getComponent}) => {
                 </Row>  
 
                 <Row form>
-                  <Col md={4}>
+                  <Col md={2}>
                     <FormGroup>
                       <Label for="fregistro">Fecha Registro</Label>
                       <Input
@@ -188,7 +206,7 @@ const EditClientes = ({getComponent}) => {
                       />
                     </FormGroup>
                   </Col>
-                  <Col md={4}>
+                  <Col md={2}>
                     <FormGroup>
                       <Label for="ftipo"> Tipo </Label>
                         <Select                                                               
@@ -202,7 +220,7 @@ const EditClientes = ({getComponent}) => {
                           onChange={ (e) => changesHandler(e,'tipo')}/>
                     </FormGroup>
                   </Col>
-                  <Col md={4}>
+                  <Col md={2}>
                     <FormGroup>
                       <Label for="fgrupo"> Grupo </Label>
                         <Select                                                               
@@ -216,8 +234,6 @@ const EditClientes = ({getComponent}) => {
                           onChange={ (e) => changesHandler(e,'grupo')}/>
                     </FormGroup>
                   </Col>
-                </Row>  
-                <Row form>
                   <Col md={3}>
                   <FormGroup>
                     <Label for="ftelefono">Teléfono</Label>
@@ -249,6 +265,36 @@ const EditClientes = ({getComponent}) => {
                         placeholder="(00)-000000"/>
                     </FormGroup>
                   </Col>
+
+                </Row>  
+
+                <Row form>
+                <Col md={3}>
+                    <FormGroup>
+                      <Label for="flatitude">Latitude</Label>
+                      <Input
+                        id="latitude"
+                        name="latitude"                    
+                        type="text"
+                        value={item.latitude || ''}
+                        onChange={ (e) => changeHandler(e)}
+                        readOnly={true}
+                        />
+                    </FormGroup>
+                  </Col>
+                  <Col md={3}>
+                  <FormGroup>
+                    <Label for="flongitude">Longitude</Label>
+                    <Input
+                      id="longitude"
+                      name="longitude"                    
+                      type="text"
+                      value={item.longitude || ''}
+                      onChange={ (e) => changeHandler(e)}    
+                      readOnly={true}                  
+                    />
+                  </FormGroup>
+                  </Col>                                  
                   <Col md={6}>
                   <FormGroup>
                       <Label for="fpersonac">Persona Contacto</Label>
@@ -358,7 +404,7 @@ const EditClientes = ({getComponent}) => {
                       </Button>
                   </Col>
                 </Row> 
-            </Form>
+            </Form>                        
           </TabPane>  
           <TabPane tabId="2">
               <Row>
@@ -382,6 +428,15 @@ const EditClientes = ({getComponent}) => {
         </Card>  
        </Col>
       </Row>  
+      
+      <Modal isOpen={modalView} toggle={toggleMapaView}>
+        <Button className="btn-view btn-danger"  onClick={() => toggleMapaView()} >
+          <FontAwesomeIcon icon={faTimes} />
+        </Button>
+        <ModalBody>         
+            <Mapas/>
+        </ModalBody>
+      </Modal>
     </>
     );
 };

@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useCallback} from "react";
+import React,{ useState, useEffect } from "react";
 import { ButtonGroup, FormGroup, Label, Table, Row, Col, Button, Card, CardBody, CardFooter  } from "reactstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { crudActions } from '../../../../actions'
@@ -36,7 +36,7 @@ const TableMarcas = () => {
   }, []);
 
   const changeSelect = (pky) => {        
-    const {value, label} = pky
+    const {value } = pky
     setpag(value)
     makeHttpRequestWithPage(1,value)
   };

@@ -5,6 +5,7 @@ import { Row,Col,Button, FormGroup, Input, Label,Card,CardBody,ListGroup, ListGr
 import { crudActions } from '../../../../actions'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {toastr} from 'react-redux-toastr'
 
 const SearchvArticulos = ({getComponent}) => {
     const dispatch = useDispatch()   
@@ -39,8 +40,16 @@ const SearchvArticulos = ({getComponent}) => {
     
     const upCantidad = (e) => {
       const { value } = e.target 
-      setCantidad(value)      
+
+      if(articulo.stock >= parseInt(value) && parseInt(value) > 0)
+      {
+        setCantidad(value)
+      }else{
+        toastr.error('Stock', 'La cantidad es mayor al STOCK')
+        setCantidad(0)  
+      }      
     }
+
     const upValor = (e) => {
       const { value } = e.target 
       setValor(value)      
@@ -93,7 +102,7 @@ const SearchvArticulos = ({getComponent}) => {
     const handleAsignar = (articulo) =>{   
       console.log(articulo)
       setArticulo(articulo)  
-      setName(articulo.nombre)    
+      setName(articulo.codigo+' - '+articulo.nombre)    
       setValor(articulo.precioVenta)    
       setOpen(false)
     }

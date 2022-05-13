@@ -12,18 +12,13 @@ import SelectMarca from '../../Marcas/components/SelectMarca'
 import SelectUnidad from '../../Unidades/components/SelectUnidad'
 import { custom } from '../../../../helpers/customStyles'
 import { tiposServicio, niveles, clasificaciones } from "../../../../helpers/dataLoad";
-
-const defaultVal = (options, valor) =>{
-  return options.filter(item =>
-      item.value === valor
-    )
-
-}
+import { defaultVal } from "../../../../helpers/funciones";
 
 
 const EditArticulos = ({getComponent}) => {
     const dispatch = useDispatch()  
-    const { item } = useSelector(state => state.articulos)   
+    const { item } = useSelector(state => state.articulos)  
+    const empresa = JSON.parse(localStorage.getItem('@userEmpresa')) 
     const [iok1, setiok1] = useState(true);
     const [iok2, setiok2] = useState(false);
     const [iok3, setiok3] = useState(false);
@@ -56,8 +51,7 @@ const EditArticulos = ({getComponent}) => {
           dispatch(crudActions.SET_UPDATE('ARTICULOS_ADD','articulos',item,'unit'))            
         }else{
           dispatch(crudActions.SET_ADD('ARTICULOS_ADD','articulos',item,'unit'))           
-        }    
-        console.log(item) 
+        }            
      }  
     useEffect(() => {      
       return () => {
@@ -87,6 +81,12 @@ const EditArticulos = ({getComponent}) => {
         default:
           break;  
       }      
+    }
+
+    const generarCodigo = () => {             
+      let maxNumber = 1000000000;
+      let randomNumber = Math.floor((Math.random() * maxNumber) + 3);
+      dispatch(crudActions.SET_CHANGE('ARTICULOS_CHANGE','codigo',randomNumber)) 
     }
     return (              
     <>
@@ -134,28 +134,18 @@ const EditArticulos = ({getComponent}) => {
                   <Col md={4}>
                     <FormGroup>
                       <Label for="codigoBarras">Código</Label>
-                        <Input type="text" name="codigoBarras" id="codigoBarras"
-                          placeholder="codigo"  value={item.codigoBarras || ''}
+                        <Input type="text" name="codigo" id="codigo"
+                          placeholder="codigo"  value={item.codigo || ''}
                           onChange={ (e) => changeHandler(e)} 
-                          onInvalid={(e) => e.target.setCustomValidity('El campo código barras es obligatorio !')}
+                          onDoubleClick= {(e) => generarCodigo()}                          
+                          maxLength={30}             
+                          onInvalid={(e) => e.target.setCustomValidity('El campo código es obligatorio !')}
                           onInput={(e) => e.target.setCustomValidity('')}
                           maxLength={25}                          
-                          required
+                          required                                       
                         />    
                     </FormGroup>    
-                  </Col>
-                  <Col md={2}>
-                    <FormGroup>
-                      <Label for="codigo">Código Ref.</Label>
-                        <Input type="text" name="codigo" id="codigo" 
-                          placeholder="codigo"  value={item.codigoBarras + '-' +item.id}
-                          onChange={ (e) => changeHandler(e)}                           
-                          maxLength={25}                      
-                          readOnly={true}    
-                          
-                          />    
-                    </FormGroup>    
-                  </Col>
+                  </Col>                  
                   <Col md={2}>
                     <FormGroup>
                       <Label for="estado">Estado</Label>
@@ -208,7 +198,7 @@ const EditArticulos = ({getComponent}) => {
                   </Col>
                   <Col md={3  }>
                   <FormGroup>
-                      <Label for="precioVenta">Precio Venta</Label>
+                      <Label for="precioVenta">Precio Venta {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(0)}</Label>
                       <Input type="number" name="precioVenta" id="precioVenta"  value={item.precioVenta || ''} 
                           onChange={ (e) => changeHandler(e)}  
                           onInvalid={(e) => e.target.setCustomValidity('El campo precio venta es obligatorio !')}
@@ -220,20 +210,15 @@ const EditArticulos = ({getComponent}) => {
                   </Col>
                 </Row> 
 
-                <Row form>
-                  <Col md={3}>
-                    <FormGroup>
-                      <Label for="eId">Categoría</Label>
-                      <SelectCategoria/>  
-                    </FormGroup>    
-                  </Col>                  
+                <Row form>                  
+                  <SelectCategoria/>                                
                   <Col md={3}>
                     <FormGroup>
                       <Label for="eEstado">Marca</Label>
                       <SelectMarca/>  
                     </FormGroup>   
                   </Col>
-                  <Col md={3}>
+                  <Col md={2}>
                     <FormGroup>
                       <Label for="eModelo">Modelo</Label>
                       <Input type="text" name="modelo" id="modelo" 
@@ -241,7 +226,7 @@ const EditArticulos = ({getComponent}) => {
                           onChange={ (e) => changeHandler(e)} />  
                     </FormGroup>   
                   </Col>
-                  <Col md={3}>
+                  <Col md={2}>
                   <FormGroup>
                       <Label for="eTipo">Tipo</Label>
                       <Select

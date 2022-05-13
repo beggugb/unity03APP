@@ -7,13 +7,27 @@ import {
   Col,
   Row,    
   Button } from "reactstrap";
-
+  import GoogleMapReact from 'google-map-react'
 import ReactToPrint from "react-to-print";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {    
+  faEdit,
+  faTrash,
+  faCheck,
+  faMapPin,
+  faMapMarkerAlt
+} from "@fortawesome/free-solid-svg-icons";
+const fechaHoy = new Date()
+const LocationPin = ({ text }) => (
+  <>      
+  <FontAwesomeIcon icon={faMapMarkerAlt} className="pini"/>
+  
+  </>
+  
+)
 
  export class ComponentToPrint extends React.PureComponent {
   render() {
-    const fechaHoy = new Date(); 
     return (
       <div className="reporte">     
       <div className="report-header">        
@@ -75,6 +89,29 @@ import ReactToPrint from "react-to-print";
             </Row>                    
           </Col>
         </Row>
+        <Row>
+          <Col>
+          <div style={{ height: '40vh', width: '100%' }}>
+            { this.props.data.latitude && this.props.data.longitude ?       
+              <GoogleMapReact
+              bootstrapURLKeys={{ key: 'AIzaSyAF83DBU51q3idSspsd7f4DtTk7vNwHpR8' }}
+              defaultCenter={{        
+                lat: parseFloat(this.props.data.latitude),
+                lng: parseFloat(this.props.data.longitude)
+                }}
+              defaultZoom={17}>
+                <LocationPin           
+                lat={parseFloat(this.props.data.latitude)}
+                lng={parseFloat(this.props.data.longitude)}
+                text={this.props.data.direccion}
+                />
+          
+              </GoogleMapReact>
+            : null }        
+          </div>      
+          </Col>
+        </Row>
+
       </div>
       <div className="report-footer">        
           <Row>

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row,Col, Button, FormGroup, Input, Label,Card,CardBody,ListGroup, ListGroupItem  } from "reactstrap"
 import { crudActions } from '../../../../actions'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faArrowDown, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {toastr} from 'react-redux-toastr'
 
 const SearchsArticulos = ({getComponent}) => {
     const dispatch = useDispatch()   
@@ -55,7 +56,8 @@ const SearchsArticulos = ({getComponent}) => {
     } 
 
     const add = () =>{     
-      let ites = [...items]
+      if(cantidad > 0 && valor > 0 && articulo.id > 0){
+        let ites = [...items]
       let cTotal = item.nroItems   
       let gTotal = item.totalGeneral      
       let sTotal = item.subTotal
@@ -90,7 +92,9 @@ const SearchsArticulos = ({getComponent}) => {
         dispatch({type:'COMPRAS_SET_ITEMS',values:ites, cantidad: cTotal, subTotal: sTotal, totalGeneral: gTotal,impuesto:gImp })
       }
       clearInput()
-
+      }else{
+        toastr.error('Error','Datos faltantes')  
+      }      
     }
 
     const handleAsignar = (articulo) =>{     
@@ -156,9 +160,9 @@ const SearchsArticulos = ({getComponent}) => {
                       </Col>
                                       
                       <Col md={1}>
-                        <Button className={cantidad === 0 ? "btn-rdd btn-disabled mt-3":"btn-rdd btn-danger mt-3"}
+                        <Button className="btn btn-rd btn-danger mt-3"
                           onClick={() => add() }>
-                         <FontAwesomeIcon icon={faArrowDown} />                          
+                         <FontAwesomeIcon icon={faPlus} />                          
                         </Button>
                       </Col>
                     </Row>                  

@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Form, FormGroup, Col, Button, Input, ButtonGroup  } from "reactstrap";
+import { Row, Form, FormGroup, Col, Button, Input, ButtonGroup  } from "reactstrap";
 import { useDispatch } from 'react-redux'
 import { usuarioActions } from '../../actions'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,14 +26,32 @@ export default function LoginView({setToken}) {
   return(
     <div className="pos">
       <div className="contenedor">
-        <div className="contenidoLeft">
-          <div className="imas">
-            <img src={require("../../assets/img/login.png")}/>
-          </div>  
-        </div>   
-        <div className="contenidoRights">   
-        <div className="login">    
-          <Form className="form-login mt-3" onSubmit={submitHandle}>
+      <div className="contenidoCentrals">            
+            <div className="contenidoLefts">
+            <Row>              
+              <Col md="12" className="colCentrals"></Col>
+            </Row>
+            <Row>
+              <Col md="4" className="colCentrals">                              
+              </Col>
+              <Col md="4" className="colCentrals">
+                <div className="imas">
+                  <img src={require("../../assets/img/login.png")}/>
+                </div>
+              </Col>
+              <Col md="4" className="colCentrals"></Col>
+            </Row>
+            <Row>              
+              <Col md="12" className="colCentrals">
+                
+              </Col>
+            </Row>
+            </div>
+            <div className="contenidoRights">
+              <Row>
+                <Col className="mt-2">
+                    <div className="login"> 
+                    <Form className="form-login mt-3" onSubmit={submitHandle}>
           <h5>Iniciar Sessión</h5>
           <FormGroup row>
             <Col sm={2} className="io-blue">
@@ -80,7 +98,15 @@ export default function LoginView({setToken}) {
               </ButtonGroup>
             </div>
           </Form>
+                    </div>
+                </Col>
+              </Row>
+              <div className="footer-unity">          
+            <img src={require("../../assets/img/logob.png")}/>
+            <p><b>Beggubo 'Gnu</b></p>
+            <p>www.beggubo.com</p>                          
         </div>
+            </div>
         </div>  
       </div>
     </div>    

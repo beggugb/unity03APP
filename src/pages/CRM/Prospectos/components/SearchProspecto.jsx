@@ -8,20 +8,13 @@ import { customs } from '../../../../helpers/customStyles'
 import Select from 'react-select'  
 import ProspectoResumen from "./ProspectoResumen";
 import  { registerLocale } from  "react-datepicker";
+import { defaultVal } from "../../../../helpers/funciones";
 import es from 'date-fns/locale/es';
 registerLocale('es', es)
 
 const page =[{"value":'observaciones',"label":'glosa'},
              {"value":'cliente',"label":'cliente'}
             ];
-
-            const defaultVal = (options, valor) =>{
-              return options.filter(item =>
-                  item.value === valor
-                )
-            
-            }
-
 
 const SearchVenta = ({getComponent}) => {
     const dispatch = useDispatch()    

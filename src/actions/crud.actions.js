@@ -1,7 +1,8 @@
 import { crudService } from "../services";
 import {toastr} from 'react-redux-toastr'
 export const crudActions = {        
-  GET_DATA,  
+  GET_DATA, 
+  GET_LICENCIA, 
   GET_ITEM,
   GET_ITEM_SINGLE,
   GET_ITEMS,
@@ -28,6 +29,19 @@ export const crudActions = {
   GET_SEARCH_ITEMS,
   GET_SEARCHS_ITEMS
 };
+
+function GET_LICENCIA(xredux, dato) {  
+  return (dispatch) => {    
+    crudService
+      .GET_LICENCIA(dato)
+      .then((response) => {               
+       dispatch(resRedux(xredux, response));       
+      })
+      .catch((err) => {        
+          toastr.error('err', 'No hay conexión con la licencia')      
+      });
+  };
+}
 
 function GET_SEARCHS_ITEMS(xredux, payload, dato) {    
   return (dispatch) => {
@@ -87,7 +101,7 @@ function GET_DASHBOARD(xredux, payload, dato) {
     crudService
       .GET_INFORMES(payload,dato)
       .then((response) => {      
-        /*console.log(response)*/       
+        /*console.log(response)       */
         dispatch(resRedux(xredux, response.result));
        
       })
@@ -156,8 +170,8 @@ function GET_INFORMES(xredux, payload, dato) {
     /*dispatch({type:'SET_LOADING',state:true})*/ 
     crudService
       .GET_INFORMES(payload, dato)
-      .then((response) => {                 
-        /*console.log(response)*/   
+      .then((response) => {     
+        console.log(response)                    
         dispatch(resRedux(xredux, response.result));  
         /*dispatch({type:'SET_LOADING',state:false})*/        
       })
@@ -281,12 +295,12 @@ function GET_ITEM_LOAD(xredux, payload, pky) {
     crudService
       .GET_ITEM(payload, pky)
       .then((response) => {    
-        /*console.log(response)*/         
+        console.log(response)         
         /*dispatch({type:'SET_LOADING',state:false})*/
         dispatch(resRedux(xredux, response.result)); 
         if(xredux === 'PROSPECTOS_ITEM' && response.result.articulo)
         {
-          dispatch({type:'ARTICULOS_ITEM',response:response.result.articulo})
+          dispatch({type:'ARTICULOS_SINGLE_ITEM',response:response.result.articulo})
         }
       })
       .catch((err) => {
@@ -432,7 +446,8 @@ function GET_ITEM_SINGLE(xredux, payload, pky) {
     /*dispatch({type:'SET_LOADING',state:true})*/
     crudService
       .GET_ITEM_SINGLE(payload, pky)
-      .then((response) => {             
+      .then((response) => {         
+        console.log(response)    
         dispatch(resRedux(xredux, response.result));
         /*dispatch({type:'SET_LOADING',state:false})*/
       })
@@ -448,7 +463,7 @@ function GET_ITEM(xredux, payload, pky) {
     /*dispatch({type:'SET_LOADING',state:true})*/
     crudService
       .GET_ITEM(payload, pky)
-      .then((response) => {                     
+      .then((response) => {                
        dispatch(resRedux(xredux, response.result));
         /*dispatch({type:'SET_LOADING',state:false})*/
       })

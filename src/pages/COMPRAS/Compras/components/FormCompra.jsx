@@ -13,6 +13,8 @@ const FormCompra = () => {
     const dispatch = useDispatch()  
     const { item, items } = useSelector(state => state.compras)   
     const usuario = JSON.parse(localStorage.getItem('@userUnity'))
+    const almacen = JSON.parse(localStorage.getItem('@userAlmacen'))
+    
 
     const changeHandler = event => {    
         const { name, value } = event.target  
@@ -38,6 +40,7 @@ const FormCompra = () => {
         let eItem = item                     
         eItem.usuarioId = usuario.id                
         eItem.detalle   = item.observaciones +', '+item.proveedors
+        eItem.almacenId = almacen.id
         let xcode ={
           item : eItem,
           items: items
@@ -92,9 +95,9 @@ const FormCompra = () => {
           </Row>  
           
           <Row form>
-            <Col md={4}>
+            <Col md={5}>
               <Button
-                className={ (item.proveedorId && item.observaciones) ? (item.id ? "btn-md btn-warning mt-4" : "btn-md btn-info mt-4") : "btn-md disabled btn-info mt-4"}
+                className={ item.observaciones ? (item.id ? "btn-md btn-warning mt-4" : "btn-md btn-info mt-4") : "btn-md disabled btn-info mt-4"}
                 onClick={() => submitHandle()}>
                 <FontAwesomeIcon icon={faSave} />  
                   {' '} {item.id ? " Actualizar" : " Guardar"}                        

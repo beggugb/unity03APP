@@ -6,8 +6,7 @@ import Select from "react-select";
 
 const SelectCategorias = () => {
     const dispatch = useDispatch()    
-    const { data } = useSelector(state => state.categorias)
-    const { item } = useSelector(state => state.articulos)
+    const { data } = useSelector(state => state.categorias)    
 
     const makeHttpRequestWithPage = useCallback(() =>{
         dispatch(crudActions.GET_LIST('CATEGORIAS_LISTA','categorias','nombre','asc'))          
@@ -15,8 +14,7 @@ const SelectCategorias = () => {
     
     const changeHandler = event => {    
         let io = event ? event.value: 0    
-        let lb = event ? event.label: '--Todas--'    
-        /*dispatch(crudActions.SET_CHANGE('ARTICULOS_CHANGE','categoriaId',io)) */
+        let lb = event ? event.label: '--Todas--'            
         dispatch({type:'INFORME_SET_CATEGORIA_ID',categoriaId:io, labelCategoria: lb})        
     }     
     

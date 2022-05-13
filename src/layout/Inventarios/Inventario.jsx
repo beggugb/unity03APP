@@ -15,6 +15,7 @@ import IMovimientos from "../../pages/INVENTARIOS/Informes/MovimientosView"
 import Utils from "../../pages/INVENTARIOS/Categorias/CategoriasView"
 import Marcas from "../../pages/INVENTARIOS/Marcas/MarcasView"
 import Unidades from "../../pages/INVENTARIOS/Unidades/UnidadesView"
+import Movimientos from "../../pages/INVENTARIOS/Movimientos/Movimientos"
 import Moment from "react-moment";
 
 
@@ -60,7 +61,9 @@ function Inventario(){
           case "Utils":
             return Utils;
           case "Informes":
-            return Informes;      
+            return Informes;
+          case "Movimientos":
+            return Movimientos;        
           default:
             return null;
         }

@@ -82,6 +82,33 @@ import ReactToPrint from "react-to-print";
                    
           </Col>
         </Row>
+        <Row>
+        <Col md="12">
+            <h4>Disponibles</h4>  
+            <Table className="table-reportesh">
+            <thead>
+              <tr>                  
+                <th width="5%">#</th>
+                <th width="35%">Almacen</th>
+                <th width="40%">Dirección</th>
+                <th width="20%">Stock</th>                                
+              </tr>
+          </thead>
+          {this.props.existencias && (
+              <tbody>
+                  {this.props.existencias.map((item, index) => (
+                      <tr key={index}>                      
+                        <td>{item.id}</td>
+                        <td>{item.almacen}</td>
+                        <td>{item.direccion}</td>
+                        <td>{item.stock}</td>
+                      </tr>  
+                      ))}
+              </tbody>
+          )}     
+            </Table>      
+          </Col>
+        </Row>
       </div>
       <div className="report-footer">        
           <Row>
@@ -101,7 +128,7 @@ import ReactToPrint from "react-to-print";
 
 function ArticuloResumen () {    
 const dispatch = useDispatch()
-const { item } = useSelector(state => state.articulos)
+const { item,existencias } = useSelector(state => state.articulos)
 const usuario = JSON.parse(localStorage.getItem('@userUnity'))
 const componentRef = useRef();   
 
@@ -120,6 +147,7 @@ return(
         <ComponentToPrint
           ref={componentRef}                      
           data={item}
+          existencias={existencias}
           user={usuario}
         />                
     </div>

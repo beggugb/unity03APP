@@ -32,10 +32,10 @@ import ReactToPrint from "react-to-print";
             <thead>
               <tr>  
                   <th width="10%" className="text-dark">Almacen</th>                  
-                  <th width="30%" className="text-dark">Artículo</th>
-                  <th width="10%" className="text-dark">Categoría</th>
-                  <th width="10%" className="text-dark">Marca</th>
-                  <th width="15%" className="text-dark">$Venta</th>
+                  <th width="25%" className="text-dark">Artículo</th>
+                  <th width="15%" className="text-dark">Categoría</th>                  
+                  <th width="12%" className="text-dark">$Costo</th>
+                  <th width="13%" className="text-dark">$Venta</th>
                   <th width="10%" className="text-dark">Stock</th>
                   <th width="15%" className="text-dark">Σ</th>                                             
               </tr>
@@ -43,12 +43,12 @@ import ReactToPrint from "react-to-print";
 
           {this.props.pdata && (
             <tbody>
-                {this.props.pdata.map((item) => (
-                  <tr key={item.id}>  
+                {this.props.pdata.map((item,index) => (
+                  <tr key={index}>  
                     <td>{item.almacen || ''}</td>                    
                     <td>{item.nombre || ''}</td>
                     <td>{item.categoria || ''}</td>
-                    <td>{item.marca || ''}</td>                                        
+                    <td>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.costo)}</td>
                     <td>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.precioVenta)}</td>
                     <td>{item.stock}</td>                                                                                                             
                     <td>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.stock * item.precioVenta)}</td>                                    

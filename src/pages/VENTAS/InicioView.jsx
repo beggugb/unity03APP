@@ -36,7 +36,7 @@ const InicioView = () => {
       type: 'bar'
   },
   title: {
-      text: 'Ventas'
+      text: 'Ventas x producto'
   },
   subtitle: {
       text: 'Gestión: '+ gestion
@@ -118,13 +118,13 @@ const InicioView = () => {
       type: 'line'
   },
   title: {
-      text: 'Ventas'
+      text: 'Ventas x mes'
   },
   subtitle: {
       text: 'Gestión: '+ gestion
   },
   xAxis: {
-      categories: ['Ean', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dic']
+      categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dic']
   },
   yAxis: {
       title: {
@@ -159,7 +159,7 @@ const InicioView = () => {
             <div className="card-icono">
               <FontAwesomeIcon icon={faShoppingCart} />
             </div>
-              <CardTitle className="text-dark mt-2"> VENTAS CANTIDAD</CardTitle>
+              <CardTitle className="text-dark mt-2"> Nº VENTAS</CardTitle>
               <p>{ventaT.total}</p>                                   
               </CardHeader>
           </Card>    
@@ -168,7 +168,7 @@ const InicioView = () => {
           <Card>
           <CardHeader>
               <div className="card-icono"><FontAwesomeIcon icon={faReceipt} /></div>
-              <CardTitle className="text-dark mt-2"> VENTAS VALOR</CardTitle>              
+              <CardTitle className="text-dark mt-2"> SUMATORIA VENTAS</CardTitle>              
               <p>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(ventaT.suma)}</p>                                 
               </CardHeader>
           </Card>    

@@ -1,7 +1,6 @@
 import React  from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { Label, FormGroup, Input, Row, Col, Card, CardBody, Button } from "reactstrap"
-
+import { Label, FormGroup, Input, Row, Col, Card, Button } from "reactstrap"
 import SearchsPuc from '../../Pucs/components/SearchsPuc'
 import ListaComprobantes from "./ListaComprobantes";
 import Moment from 'react-moment'

@@ -1,7 +1,8 @@
-import { authHeader, api } from "../helpers";
+import { authHeader, api, apis } from "../helpers";
 
 export const crudService = {  
   GET_DATA,  
+  GET_LICENCIA,
   GET_ITEM,
   GET_ITEM_SINGLE,
   GET_ITEMS, 
@@ -21,6 +22,15 @@ export const crudService = {
   GET_SEARCH_ITEMS,
   GET_SEARCHS_ITEMS
 };
+
+function GET_LICENCIA(dato) {
+  const requestOptions = {
+    method: "POST",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+    body: JSON.stringify(dato),
+  };
+  return fetch(`${apis}/clientes/item/verificar/licencia/`, requestOptions).then(handleResponse);
+}
 
 function GET_SEARCHS_ITEMS(payload, dato) {  
   const requestOptions = {

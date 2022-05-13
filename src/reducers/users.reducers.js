@@ -10,7 +10,7 @@ const initialState = {
       password: '',
       estado: true,
       rolId: 1,
-      sucursalId: 2,
+      almacenId: 2,
       isCajero: false
     },   
     modulos:[]
@@ -33,14 +33,12 @@ export function users(state = initialState, action) {
             pagina: action.response.usuarios.pagina,
             paginas: action.response.usuarios.paginas,
             total: action.response.usuarios.total,
-            item: initialState.item,
-            modulos: []
+            item: initialState.item            
         };
       case "USUARIOS_ITEM":
           return {
             ...state,
-            item: action.response.usuario,
-            modulos: action.response.modulos,
+            item: action.response
 
           };  
       case "USUARIOS_DATA":
@@ -67,8 +65,7 @@ export function users(state = initialState, action) {
             data: [],
             pagina: 0,
             paginas: 0,
-            total: 0,
-            modulos:[],
+            total: 0,            
             item: initialState.item
         };  
       default:

@@ -46,15 +46,15 @@ const SearchcArticulos = ({getComponent}) => {
     } 
 
     const add = () =>{  
-      let ites = [...items]
-      let cTotal = item.nroItems     
-      let gTotal = item.totalGeneral      
-      let sTotal = item.subTotal
-      let gImp   = item.impuesto
-      let repeat = false
-      let tDescuento = item.descuento
-      ites.map((item, index) =>{                        
-        if(item.articuloId === articulo.articuloId)
+      let ites       = [...items]
+      let cTotal     = item.nroItems     
+      let gTotal     = item.totalGeneral      
+      let sTotal     = item.subTotal
+      let gImp       = item.impuesto
+      let tDescuento = item.totalGeneral      
+      let repeat     = false      
+      ites.map((itt, index) =>{                        
+        if(itt.articuloId === articulo.articuloId)
         { 
           repeat = true;
         }
@@ -73,29 +73,26 @@ const SearchcArticulos = ({getComponent}) => {
         nombre       : articulo.nombre,    
         cotizacionId : item.id    
       }  
-      console.log(itemCotizacion)
       ites.push(itemCotizacion);   
 
       cTotal = parseInt(cTotal) + parseInt(cantidad);    
-      gTotal = parseFloat(gTotal) + parseFloat(itemCotizacion.subTotal)      
-        
-      gImp       = parseFloat(gTotal) * parseFloat(item.iva / 100)
-      sTotal     = parseFloat(gTotal) - parseFloat(gImp)     
-      tDescuento = parseFloat(gTotal) - parseFloat(item.descuento)
+      gTotal = parseFloat(gTotal) + parseFloat(itemCotizacion.subTotal)              
+      gImp   = parseFloat(gTotal) * parseFloat(item.iva / 100)
+      
+      sTotal = (gTotal - item.descuento) - parseFloat(gImp)      
+      tDescuento = item.descuento ? parseFloat(gTotal) - parseFloat(item.descuento)  : 0
       dispatch({type:'COTIZACIONES_SET_ITEMS',values:ites, cantidad: cTotal, subTotal: sTotal, totalGeneral: gTotal,impuesto:gImp,totalDescuento : tDescuento })
       }
         clearInput()
 
     }
 
-    const handleAsignar = (articulo) =>{   
-      console.log(articulo)      
+    const handleAsignar = (articulo) =>{        
       setArticulo(articulo)  
       setName(articulo.nombre)    
       setValor(articulo.precioVenta)    
       setOpen(false)
     }
-
 
     return (   
       <>           

@@ -9,15 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faArrowLeft   } from "@fortawesome/free-solid-svg-icons";
 import DatePicker, { registerLocale } from  "react-datepicker";
 import ItemsTickets from "./ItemsTickets";
+import { defaultVal } from "../../../../helpers/funciones";
 import es from 'date-fns/locale/es';
 registerLocale('es', es)
 
-const defaultVal = (options, valor) =>{
-  return options.filter(item =>
-      item.value === valor
-    )
-
-}
 
 const tipos     = [
                   {"value":"llamada","label":"llamada"},

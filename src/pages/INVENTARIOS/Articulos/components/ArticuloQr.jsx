@@ -6,7 +6,8 @@ import QRCode from "qrcode.react";
 
 export class ComponentToPrint extends React.PureComponent {
   render() {    
-    const etiquetas = [0,1,2,3]
+    const etiquetas = [0,1]
+    const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))
     return (
       <>
     <div className="reporte">     
@@ -27,7 +28,7 @@ export class ComponentToPrint extends React.PureComponent {
                   {this.props.data.nombre}
                   </Col>
                   <Col md="6" className="repDesr">
-                  <QRCode value={this.props.data.codigoBarras} style={{  width: 50, height: 50,padding:2, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
+                  <QRCode value={this.props.data.codigo} style={{  width: 50, height: 50,padding:2, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
                   </Col>
                 </Row>                            
                 <Row>
@@ -53,7 +54,7 @@ export class ComponentToPrint extends React.PureComponent {
                   {this.props.data.nombre}
                   </Col>
                   <Col md="6" className="repDesr">
-                  <QRCode value={this.props.data.codigoBarras} style={{  width: 50, height: 50,padding:2, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
+                  <QRCode value={this.props.data.codigo} style={{  width: 50, height: 50,padding:2, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
                   </Col>
                 </Row>                            
                 <Row>
@@ -72,19 +73,49 @@ export class ComponentToPrint extends React.PureComponent {
         <Row className="mt-5">
          <Col className="text-center">
             {etiquetas.map((tem,index) =>                
-              <div key={index} className="barrast">
-                <div className="etiquetaqr">
-                <QRCode value={this.props.data.codigoBarras} style={{ width: 85, height: 85, padding:5, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
+              <div key={index} className="barrasq">
+
+                <div className="etiquetaq">                  
+                  <div className="marki">                  
+                  <QRCode value={this.props.data.codigo} style={{ width: 70, height: 70, padding:2, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
+                  </div>                    
+                  <div className="price">                    
+                    {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.data.precioVenta)}
+                  </div>
+                </div>   
+                <div className="etiquetaq">                  
+                  <div className="marki">                  
+                  <QRCode value={this.props.data.codigo} style={{ width: 70, height: 70, padding:2, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
+                  </div>                    
+                  <div className="price">                    
+                    {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.data.precioVenta)}
+                  </div>
                 </div>
-                <div className="etiquetaqr">
-                <QRCode value={this.props.data.codigoBarras} style={{ width: 85, height: 85,padding:5, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
+                <div className="etiquetaq">                  
+                  <div className="marki">                  
+                  <QRCode value={this.props.data.codigo} style={{ width: 70, height: 70, padding:2, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
+                  </div>                    
+                  <div className="price">                    
+                    {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.data.precioVenta)}
+                  </div>
                 </div>
-                <div className="etiquetaqr">
-                <QRCode value={this.props.data.codigoBarras} style={{ width: 85, height: 85,padding:5, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
-                </div>  
-                <div className="etiquetaqr">
-                <QRCode value={this.props.data.codigoBarras} style={{ width: 85, height: 85,padding:5, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
-                </div>                           
+                <div className="etiquetaq">                  
+                  <div className="marki">                  
+                  <QRCode value={this.props.data.codigo} style={{ width: 70, height: 70, padding:2, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
+                  </div>                    
+                  <div className="price">                    
+                    {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.data.precioVenta)}
+                  </div>
+                </div>
+                <div className="etiquetaq">                  
+                  <div className="marki">                  
+                  <QRCode value={this.props.data.codigo} style={{ width: 70, height: 70, padding:2, border: 'solid 1px #c1c1c1', marginRight: 5 }}/>
+                  </div>                    
+                  <div className="price">                    
+                    {new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(this.props.data.precioVenta)}
+                  </div>
+                </div>                       
+
               </div>
             )}
          </Col> 

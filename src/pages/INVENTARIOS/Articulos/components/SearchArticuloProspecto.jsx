@@ -26,8 +26,8 @@ const SearchArticuloProspecto = ({getComponent}) => {
       dispatch(crudActions.GET_SEARCHS_ITEMS('ARTICULOS_DATA_ITEMS','tpv',iok))
     }      
 
-    const handleAsignar = (articulo) =>{         
-      dispatch({type:'ARTICULOS_ITEM',response:articulo}) 
+    const handleAsignar = (articulo) =>{                   
+      dispatch({type:'ARTICULOS_SINGLE_ITEM',response:articulo}) 
       clearInput()
     }
 

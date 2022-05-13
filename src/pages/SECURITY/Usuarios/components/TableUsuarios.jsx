@@ -38,9 +38,11 @@ const TableUsuarios = () => {
         <Table className="table-simple">
           <thead>
               <tr>  
-                  <th width="60%">Nombres</th>
-                  <th width="10%">Estado</th>                  
-                  <th width="25%">Rol</th>                             
+                  <th width="5%">#</th>
+                  <th width="35%">Nombres</th>
+                  <th width="10%">Estado</th>
+                  <th width="25%">Sucursal</th>
+                  <th width="10%">Rol</th>                             
                   <th width="5%"></th>                
               </tr>
           </thead>
@@ -48,9 +50,11 @@ const TableUsuarios = () => {
               <tbody>
                   {data.map((item) => (
                       <tr key={item.id}>                                              
+                        <td>{item.id}</td>
                         <td>{item.nombres}</td>
                         <td>{item.estado ? "habilitado": "no habilitado"}</td>
-                        <td>{item.rol.nombre || ''}</td>                        
+                        <td>{item.almacen.nombre || ''}</td>
+                        <td>{item.rol.nombre || ''}</td>
                         <td>
                         <ButtonGroup>
                           <Button className="btn-tb bg-defaults text-white"

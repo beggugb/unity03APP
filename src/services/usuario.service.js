@@ -14,8 +14,9 @@ function login(usuario) {
   return fetch(`${api}/usuarios/login`, requestOptions)
     .then(handleResponse)
     .then((response) => {          
-      console.log(response)   
+ 
       if(response.user.usuario){
+       
         localStorage.setItem("@userUnity", JSON.stringify(response.user.usuario));
         localStorage.setItem("@userToken", JSON.stringify(response.user.token));
         localStorage.setItem("@userItems", JSON.stringify(response.modulos));

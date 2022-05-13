@@ -64,12 +64,12 @@ const SearchArticulos = ({getComponent}) => {
         case 'barras':
           est = modalViews === true ? false : true;                     
           dispatch({type:'ARTICULOS_BARRAS',view:est}) 
-          dispatch(crudActions.GET_ITEM_SINGLE('ARTICULOS_ITEM','articulos',indicador))
+          dispatch(crudActions.GET_ITEM_SINGLE('ARTICULOS_SINGLE_ITEM','articulos',indicador))
           break;
         case 'qr':
-          est = modalViewq === true ? false : true;                     
+          est = modalViewq === true ? false : true;                               
           dispatch({type:'ARTICULOS_QR',view:est}) 
-          dispatch(crudActions.GET_ITEM_SINGLE('ARTICULOS_ITEM','articulos',indicador))
+          dispatch(crudActions.GET_ITEM_SINGLE('ARTICULOS_SINGLE_ITEM','articulos',indicador))
           break;      
         default:
           break;

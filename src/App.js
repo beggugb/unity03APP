@@ -11,6 +11,7 @@ import ToolLayout from './layout/Tool/Tool.jsx'
 import RRhhLayout from './layout/Rrhh/Rrhh.jsx'
 import InventariosLayout from './layout/Inventarios/Inventario.jsx'
 import VentasLayout from './layout/Ventas/Ventas.jsx'
+import ConsolidadoLayout  from './layout/Consolidado/Consolidado.jsx';
 
 import { Provider } from "react-redux";
 import { store, history } from "./helpers";
@@ -33,7 +34,7 @@ function App() {
         newestOnTop={false}
         preventDuplicates
         progressBar={true}
-        position="bottom-right"
+        position="top-center"
         getState={(state) => state.toastr} // This is the default
         transitionIn="fadeIn"
         transitionOut="fadeOut"        
@@ -64,6 +65,7 @@ function App() {
             <PrivateRoute path="/tools" component={ToolLayout} />
             <PrivateRoute path="/rrhh" component={RRhhLayout} />
             <PrivateRoute path="/inventarios" component={InventariosLayout} />
+            <PrivateRoute path="/consolidado" component={ConsolidadoLayout} />
           </Switch>
         </Router>
       </Provider>

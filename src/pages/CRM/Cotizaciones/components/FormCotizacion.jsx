@@ -44,10 +44,9 @@ const FormVenta = () => {
       let dato={
         item: eItem,
         items:items
-      }          
-          
-      dispatch(crudActions.SET_UPDATES('COTIZACIONES_ADD','cotizaciones',dato,'unit'))            
-        
+      }   
+      dispatch(crudActions.SET_UPDATES('COTIZACIONES_ADD','cotizaciones',dato,'unit')) 
+              
      }  
     useEffect(() => {      
       return () => {

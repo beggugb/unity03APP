@@ -48,7 +48,7 @@ import ReactToPrint from "react-to-print";
                     <td>{item.cliente}</td> 
                     <td>{item.observaciones}</td>                                                  
                     <td><Moment format="DD-MM-YYYY">{item.fechaCompra}</Moment></td>                                                  
-                    <td className="text-center">{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.total)}</td>                 
+                    <td className="text-center">{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.totalGeneral)}</td>                 
                     <td className="text-center">{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.pago)}</td>                 
                     <td className="text-center">{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.saldo)}</td>                 
                     </tr>  

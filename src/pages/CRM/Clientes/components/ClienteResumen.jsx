@@ -5,11 +5,23 @@ import { Table,Col,Row,Button } from "reactstrap";
 import ReactToPrint from "react-to-print";
 import Moment from 'react-moment'
 import QRCode from "qrcode.react";
+import GoogleMapReact from 'google-map-react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 const fechaHoy = new Date()
+const LocationPin = ({ text }) => (
+  <>      
+  <FontAwesomeIcon icon={faMapMarkerAlt} className="pini"/>
+  
+  </>
+  
+)
 
-export class ComponentToPrint extends React.PureComponent {   
+export class ComponentToPrint extends React.PureComponent {     
   render() {    
+    console.log(this.props.data.latitude)
+    console.log(this.props.data.longitude)
     return (
       <>
     <div className="reporte">     
@@ -59,18 +71,44 @@ export class ComponentToPrint extends React.PureComponent {
                   <tr><td colSpan="2">{ this.props.data.observaciones }</td></tr>                                      
         </tbody>
         </Table>
-          </Col>
-          <Col md={5} className="report-card">
-            <Row>
-              <Col className="report-imagen">
+        </Col>
+        
+        <Col md={5} className="report-card">
+          <Row>
+            <Col className="report-imagen">
                 <img alt="cliente" className="text-center reportimg" src={api + '/static/images/clientes/lg/'+this.props.data.filename }/> 
-              </Col>
-            </Row>
-            <Row>
-              <Col className="text-center report-qr">
+            </Col>
+          </Row>
+          <Row>
+            <Col className="text-center report-qr">
                 <QRCode value={'http://localhost:3000/clientes'+this.props.data.codigo} style={{  backgroundColor:'#fff', padding:5, border: 'solid 1px #eaeaea', marginRight: 5 }}/>
-              </Col>
-            </Row>                    
+            </Col>
+          </Row>                    
+        </Col>
+        </Row>
+
+        <Row>
+          <Col>
+          <div style={{ height: '300px', width: '100%' }}>
+            { (this.props.data.latitude && this.props.data.latitude !== 0) && (this.props.data.longitude && this.props.data.longitude !== 0) ?       
+              <GoogleMapReact
+              bootstrapURLKeys={{ key: 'AIzaSyAF83DBU51q3idSspsd7f4DtTk7vNwHpR8',
+              libraries:['places', 'geometry', 'drawing', 'visualization']
+             }}
+              defaultCenter={{        
+                lat: parseFloat(this.props.data.latitude),
+                lng: parseFloat(this.props.data.longitude)
+                }}
+              defaultZoom={17}>
+                <LocationPin           
+                lat={parseFloat(this.props.data.latitude)}
+                lng={parseFloat(this.props.data.longitude)}
+                text={this.props.data.direccion}
+                />
+          
+              </GoogleMapReact>
+            : null }        
+          </div>      
           </Col>
         </Row>
 

@@ -12,6 +12,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 const EditCompra = ({getComponent}) => {
   const { item } = useSelector(state => state.compras)  
   const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))
+  const almacen = JSON.parse(localStorage.getItem('@userAlmacen'))
 
 
   var d = new Date();
@@ -23,43 +24,22 @@ const EditCompra = ({getComponent}) => {
             <FontAwesomeIcon icon={faArrowLeft} /> LISTA COMPRAS
           </Button>              
         </Col>  
-      </Row> 
+      </Row>      
       <Row>
-      <Col md="12">
-        <Card>
-            <CardBody>
-             <Row>
-               <Col md="2" className="barraz">
-               <h5><b>COMPRA Nº : </b> {item.id} </h5>
-               </Col> 
-               <Col md="2" className="barrac">
-               <h5><b>Fecha : </b> <Moment format="DD/MM/YYYY">{d}</Moment> </h5>
-               </Col> 
-               <Col md="2" className="barrac">
-               <h5><b>Estado : </b> {item.estado}</h5>
-               </Col> 
-               <Col md="3" className="barrac">
-               <h5><b>Cantidad : </b> {item.nroItems}</h5>
-               </Col> 
-               <Col md="3" className="barrac">
-               <h5><b>Valor Total : </b>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.totalGeneral)}</h5>
-               </Col> 
-              </Row>  
-            </CardBody>   
-        </Card>       
-      </Col>  
-      </Row>
-
-      <Row>
-        <Col md="4" className="cardCo">
+        <Col md="3" className="cardCo">
             <Card>        
               <CardBody>
                <h6>Datos Compra</h6> 
+               <p><b>COMPRA Nº : </b> {item.id} </p>
+               <p><b>Almacen destino : </b> {almacen.nombre} </p>
+               <p><b>Fecha : </b> <Moment format="DD/MM/YYYY">{d}</Moment> </p>                             
+               <p><b>Cantidad : </b> {item.nroItems}</p>               
+               <p><b>Valor Total : </b>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(item.totalGeneral)}</p>
               <FormCompra/> 
               </CardBody>   
             </Card>
         </Col>          
-        <Col md="8" className="cardCo">
+        <Col md="9" className="cardCo">
           <Card>
             <CardBody>
               <h6>Productos</h6> 

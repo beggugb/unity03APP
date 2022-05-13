@@ -8,6 +8,7 @@ import { customs } from '../../../../helpers/customStyles'
 import Select from 'react-select'  
 import CotizacionResumen from "./CotizacionResumen";
 import DatePicker, { registerLocale } from  "react-datepicker";
+import { defaultVal } from "../../../../helpers/funciones";
 import es from 'date-fns/locale/es';
 registerLocale('es', es)
 
@@ -15,25 +16,19 @@ const page =[{"value":'observaciones',"label":'glosa'},
              {"value":'cliente',"label":'cliente'}
             ];
 
-            const defaultVal = (options, valor) =>{
-              return options.filter(item =>
-                  item.value === valor
-                )
-            
-            }
 
 
 const SearchVenta = ({getComponent}) => {
     const dispatch = useDispatch()    
-    const { total, indicador, estado}= useSelector(state => state.cotizaciones)
+    const { total, indicador, estado, cliente, email}= useSelector(state => state.cotizaciones)
     const usuario = JSON.parse(localStorage.getItem('@userUnity'))
     const [prop, setProp] = useState('observaciones');
     const [value, setValue] = useState("");
     const [view, setview] = useState(false);    
     const [viewz, setviewz] = useState(false);
     const [viewy, setviewy] = useState(false);
-    const [nombres, setnombres] = useState("");
-    const [email, setemail] = useState("");
+    /*const [nombres, setnombres] = useState(cliente);
+    const [email, setemail] = useState("");*/
     const [observaciones, setobservaciones] = useState("");
     
 
@@ -97,14 +92,12 @@ const enviar = event => {
     cotizacionId: indicador,
     clienteId:2,
     email: email,
-    nombres : nombres,
+    nombres : cliente,
     observaciones: observaciones
   }
   dispatch(mailActions.SEND_MAIL('mails/sendcotizacion',dato))
-  dispatch({type:'COTIZACIONES_INDICADOR',value:0,estado:'pendiente',indicadorTotal:0})
-  setnombres('')
-  setobservaciones('')
-  setemail('')
+  dispatch({type:'COTIZACIONES_INDICADOR',value:0,estado:'pendiente',indicadorTotal:0,cliente:'',email:''})  
+  setobservaciones('')  
   setviewy(false)
   
 };
@@ -214,12 +207,10 @@ const enviar = event => {
               <Col md={6}>                
                   <FormGroup>
                     <Label for="estado">Nombre :</Label>
-                    <Input type="text" name="nombres" id="nombres" 
-                    value={nombres || ''}                
-                    onChange={ (e) => setnombres(e.target.value)} 
-                    onInvalid={(e) => e.target.setCustomValidity('El campo nombres es obligatorio !')}
-                    onInput={(e) => e.target.setCustomValidity('')}
-                    required 
+                    <Input type="text" name="cliente" id="cliente" 
+                    value={ cliente }                                                        
+                    onChange={ (e) => console.log('oik')}
+                    readOnly={true}
                     />    
                   </FormGroup> 
               </Col>
@@ -227,13 +218,10 @@ const enviar = event => {
                   <FormGroup>
                       <Label for="estado">Email :</Label>
                       <Input type="text" name="email" id="email" 
-                        value={email || ''}                
-                        onChange={ (e) => setemail(e.target.value)} 
-                        onInvalid={(e) => e.target.setCustomValidity('El campo email es obligatorio !')}
-                        onInput={(e) => e.target.setCustomValidity('')}
-                        required 
-                        />       
-                                           
+                        value={email}              
+                        onChange={ (e) => console.log('oik')}
+                        readOnly={true}
+                        />                                                  
                     </FormGroup> 
               </Col>                                                
           </Row> 

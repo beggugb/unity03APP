@@ -23,6 +23,8 @@ const initialState = {
       codigo: '',
       pais: '',
       ciudad: '',
+      latitude:0,
+      longitude:0,      
       email: '',
       web: '',
       observaciones: '',
@@ -38,7 +40,16 @@ const initialState = {
   };
   
 export function clientes(state = initialState, action) {
-    switch (action.type) {      
+    switch (action.type) { 
+        case "CLIENTES_CHANGE_LOCATION":
+          return {          
+          ...state,
+          item:
+          {...state.item,
+            latitude: action.latitude,
+            longitude: action.longitude
+          }
+        };     
         case "CLIENTES_INDICADOR":
         return {
           ...state,

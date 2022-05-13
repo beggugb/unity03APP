@@ -1,7 +1,7 @@
 import React from "react";
-import { Row,Col,Card, CardHeader, CardTitle, CardBody } from "reactstrap"
+import { Row,Col,Card, CardHeader, CardTitle } from "reactstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHandHoldingUsd, faDollarSign, faReceipt, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faDollarSign, faReceipt, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 

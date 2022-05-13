@@ -7,6 +7,7 @@ const initialState = {
   indicador:0,
   estado: 'pendiente',
   indicadorTotal:0.00,
+  indicadorCantidad:0,
   plan:[],
   items:[],
   pitems:[],
@@ -32,6 +33,10 @@ const initialState = {
       id:'',
       nombres:''
     },
+    almacen:{
+      id:'',
+      nombre:''
+    },
     gestion:'',    
     totalGeneral:0,    
     totalDescuento:0, 
@@ -50,7 +55,8 @@ export function compras(state = initialState, action) {
           ...state,
           indicador: action.value,
           estado: action.estado,
-          indicadorTotal: action.indicadorTotal
+          indicadorTotal: action.indicadorTotal,
+          indicadorCantidad: action.cantidad
         }; 
     case "COMPRAS_PLAN_RESET":
       return {

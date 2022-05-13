@@ -4,8 +4,12 @@ const initialState = {
     paginas: 0,
     total: 0,
     item:{
-      id:1,
-      nombre:''
+      id:'',
+      nombre:'',
+      ubicacion:'',
+      encargado:'',
+      tipo:'',
+      observaciones:''
     },   
   };
   
@@ -23,10 +27,10 @@ export function almacenes(state = initialState, action) {
         return {
           ...state,
           data: action.response.data,
-            pagina: action.response.pagina,
-            paginas: action.response.paginas,
-            total: action.response.total,
-            item: initialState.item
+          pagina: action.response.pagina,
+          paginas: action.response.paginas,
+          total: action.response.total,
+          item: initialState.item
         };
       case "ALMACENES_ITEM":
           return {
