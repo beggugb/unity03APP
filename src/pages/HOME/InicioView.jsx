@@ -320,7 +320,6 @@ const getLicencia = () =>{
   /*localStorage.setItem("@userCount", true);*/
   
   const tuc = JSON.parse(localStorage.getItem('@userCount'))
-  alert(tuc)
   if(tuc === false){
     let ok ={
       "licencia" : empresa.licencia
