@@ -4,12 +4,10 @@ import { Route, Switch, NavLink } from "react-router-dom";
 import { Row, Col, Button, Nav, Modal, ModalBody, NavItem } from "reactstrap";
 import {  useSelector, useDispatch } from "react-redux";
 import { usuarioActions, crudActions} from "../../actions"
+import { modulos } from "../../route.js";
 import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion, faBell, faEnvelope, faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import Empresa from "../../pages/SECURITY/Empresa/EditEmpresa.jsx"
-import Usuarios from "../../pages/SECURITY/Usuarios/UsuariosView.jsx"
-import Sucursales from "../../pages/SECURITY/Sucursales/SucursalesView.jsx"
 import Moment from "react-moment";
 
 const override = css`
@@ -21,48 +19,15 @@ const override = css`
 const fechaHoy = new Date()
 function Tool(){
   const dispatch = useDispatch() 
-    const usuario = JSON.parse(localStorage.getItem('@userUnity'))
-    const [itemr,setItemr] = useState([])    
-    const modulos = JSON.parse(localStorage.getItem('@userItems')) 
+    const usuario = JSON.parse(localStorage.getItem('@userUnity'))    
     const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))   
     const { loading }= useSelector(state => state.usuarios)
     const { titem } = useSelector(state => state.tdcs) 
-
-    const changeModule = useCallback((name, tab, pky) =>{
-        let items = [...itemr];
-        modulos.map((prop, key)=>{            
-            if(prop.icon === "tools"){
-            let dato = {
-                path: prop.path,
-                name: prop.name,
-                icon: prop.icon,
-                component: verificar(prop.component),
-                layout: prop.layout
-            };
-            items.push(dato);
-            }
-            return null;
-        })
-        setItemr(items)
-    })
+    
     const logoutt = () => {    
       dispatch(usuarioActions.logout())  
     };
-    const verificar = (component) => {
-        switch (component) {
-          case "Empresa":
-            return Empresa;   
-          case "Usuarios":
-            return Usuarios;     
-          case "Sucursales":
-            return Sucursales;
-          /*case "Cotizaciones":
-            return Cotizaciones;          
-          default:
-            return null;*/
-        }
-      };
-    
+   
     const getRoutes = (routes) =>{
         return routes.map((prop, key) =>{
             if(prop.layout === '/tools'){
@@ -81,8 +46,7 @@ function Tool(){
     
 
     useEffect(() => {        
-        changeModule();
-        let ii ={"pr":"0"}
+       let ii ={"pr":"0"}
         dispatch(crudActions.GET_SEARCH('TDCS_TITEM','tdcs',ii))
         return () => {
          
@@ -156,24 +120,23 @@ return(
                   </Row>   
             </div>  
         </div>
-        <Nav> 
-            <div className="navLeft">        
-              {itemr.map((prop, key) => (  
+        <Nav>             
+              {modulos.map((prop, key) => ( 
+                 prop.layout === '/tools' ? 
                 <NavItem key={key}>  
                   <NavLink                
                     to={prop.layout + prop.path}
                     className="nav-link"
                     activeClassName="active">               
-                    <p> {prop.name}</p>                    
+                    <p> {prop.name}</p>      
+                    <FontAwesomeIcon icon={prop.icon} className="icon-layout"/>               
                   </NavLink>
-                </NavItem>))}
-            </div>
-            <div className="navRight"></div>
+                </NavItem>: null))            
+            }   
         </Nav>        
         </div>  
         <Switch>   
-          {getRoutes(itemr)}                       
-               
+          {getRoutes(modulos)}                                      
         </Switch>             
       </div>        
     </div>    

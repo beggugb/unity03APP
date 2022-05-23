@@ -1,167 +1,242 @@
-import React,{useState, useEffect} from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { crudActions } from '../../actions'
-import { Form, Label, FormGroup, Row, Col, Button, Card, CardBody, Input  } from "reactstrap";
+import React,{useEffect} from "react";
+import { Row,Col, Card, CardHeader, CardTitle } from "reactstrap"
+import { useSelector, useDispatch } from 'react-redux'  
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
 import SubMenu from '../../components/subConsolidado.jsx';
 import { ConsolidadoRouter } from '../../routes'
-import Inicio  from './Inicio';
-import ItemArticulo from '../INVENTARIOS/Articulos/components/ItemArticulo'
-import SelectAlmacen from "../INVENTARIOS/Almacenes/components/SelectAlmacen";
-import SelectCategorias from "../INVENTARIOS/Categorias/components/SelectCategorias"
-import Select from 'react-select'
-import { customi} from '../../helpers/customStyles'
+import { faArrowDown, faArrowUp, faHandHoldingUsd, faDollarSign, faReceipt, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { crudActions } from '../../actions'
+import Highcharts from 'highcharts'
+import HighchartsReact from 'highcharts-react-official'
 
-const stocks =  [{"value":"2","label":"--Todas--"},{"value":"1","label":"Con Stock"},{"value":"0","label":"Sin Stock"}];
-const rangos =  [{"value":"mayor","label":"Mayor/Igual a"},{"value":"menor","label":"Menor/Igual a"}];
-
-  const defaultVal = (options, valor) =>{
-            return options.filter(item =>
-                   item.value === valor
-                )}
-                
-const ExistenciasView = () => {
-  const dispatch = useDispatch() 
-  const { articuloId, almacenId, categoriaId  } = useSelector(state => state.informes)   
-  const [stock, setstock] = useState('3');  
-  const [rango, setRango] = useState("mayor");
-  const [vrango, setVrango] = useState(0);
+const InicioView = () => {
+  const dispatch = useDispatch()   
+  const { resCompras, resVentas, yingresos, ysalidas, ppendientes, cpendientes, ventaT, compraT } = useSelector(state => state.informes)
+  const usuario = JSON.parse(localStorage.getItem('@userUnity'))
+  const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))
+  let d = new Date()
+  let gestion = d.getFullYear()
   
-  const submitHandle = event => {       
-    event.preventDefault()       
-    const item = {            
-      almacenId   : almacenId,
-      articuloId  : articuloId, 
-      categoriaId : categoriaId,
-      value       : parseInt(stock),
-      rango       : rango,
-      vrango      : vrango
+  const makeHttpRequestWithPage = () =>{
+    let iok={
+      "usuarioId":usuario.id,
+      "rolId": usuario.rolId,
+      "gestion": gestion
     }
-    dispatch(crudActions.GET_INFORMES('INFORMES_EXISTENCIAS','existencias',item))      
-    
-  }  
+    dispatch(crudActions.GET_INFORMES('INFORMES_DASHBOARD_COMPRA','buycons',iok)) 
+    dispatch(crudActions.GET_INFORMES('INFORMES_DASHBOARD_VENTAS','salecons',iok))    
+    dispatch(crudActions.GET_INFORMES('INFORMES_DASHBOARD_INVENTARIO','inventory',iok)) 
+  }
 
-
-  
   useEffect(() => {
+    makeHttpRequestWithPage() //COMPRAS_INFORMES_RESET
     return () => {
-      console.log('descarga cliente')
+      dispatch({type:'INFORMES_DASHBOARD_RESET_COMPRA'}) 
     };
   }, []);
 
+  const compras = {
+
+    chart: {
+      type: 'line'
+  },
+  title: {
+      text: 'Compras x mes'
+  },
+  subtitle: {
+      text: 'Gestión: '+ gestion
+  },
+  xAxis: {
+      categories: ['Ean', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dic']
+  },
+  yAxis: {
+      title: {
+          text: 'Expresado en Cantidades'
+      }
+  },
+  plotOptions: {
+      line: {
+          dataLabels: {
+              enabled: true
+          },
+          enableMouseTracking: false
+      }
+  },
+  credits: {
+    enabled: false
+  },
+  series: [{
+      name: 'Compras',
+      data: resCompras
+  } ]
+
+  }
+  const ventas = {
+
+    chart: {
+      type: 'line'
+  },
+  title: {
+      text: 'Ventas x mes'
+  },
+  subtitle: {
+      text: 'Gestión: '+ gestion
+  },
+  xAxis: {
+      categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dic']
+  },
+  yAxis: {
+      title: {
+          text: 'Expresado en Cantidades'
+      }
+  },
+  plotOptions: {
+      line: {
+          dataLabels: {
+              enabled: true
+          },
+          enableMouseTracking: false
+      }
+  },
+  credits: {
+    enabled: false
+  },
+  series: [{
+      name: 'Ventas',
+      data: resVentas
+  } ]
+
+  }
+
+  const inventarios = {
+    chart: {
+      type: 'column'
+  },
+  title: {
+      text: 'Movimiento de Inventario'
+  },
+  credits: {
+    enabled: false
+  },
+  subtitle: {
+      text: 'Gestion : ' + gestion
+  },
+  xAxis: {
+      categories: [
+          'Ene',
+          'Feb',
+          'Mar',
+          'Abr',
+          'May',
+          'Jun',
+          'Jul',
+          'Ago',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dic'
+      ],
+      crosshair: true
+  },
+  yAxis: {
+      min: 0,
+      title: {
+          text: 'Cantidad '
+      }
+  },
+  plotOptions: {
+      column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+      }
+  },
+  series: [{
+      name: 'Ingresos',
+      data: yingresos
+
+  }, {
+      name: 'Salidas',
+      data: ysalidas
+
+  }] 
+  }
+
   return(
-    <>    
     <div className="content">     
       <div className="main-contenido">
-      <SubMenu items={ConsolidadoRouter} prop='Existencias'/>  
-        <Row>
-        <Col md="3">
-          <Card>        
-              <CardBody>
-              <Form onSubmit={ submitHandle}>
-                <Row form>
-                 <Col>INFORME DE EXISTENCIAS</Col>
-                </Row>
-                <Row form>
-                  <Col md="12">
-                  <FormGroup >
-                    <Label>Almacen: </Label>              
-                    <SelectAlmacen/>
-                  </FormGroup> 
-                  </Col>                              
-                </Row>
-                <Row form>                             
-                  <Col md="12">
-                  <FormGroup >
-                    <Label>Categoría: </Label>              
-                    <SelectCategorias/>
-                  </FormGroup>  
-                  </Col>
-                </Row>
-                <Row form>
-                  <Col md="12"> 
-                    <FormGroup>   
-                      <Label for="eHasta">Artículo : </Label>                 
-                      <ItemArticulo/>
-                    </FormGroup>
-                  </Col> 
-                </Row>  
-                <Row>
-                  <Col md="12"> 
-                  <FormGroup>   
-                  <Label for="eHasta">Stock: </Label>                 
-                      <Select         
-                          defaultValue={stock[0]}
-                          name="stock"    
-                          id="stock"                    
-                          options={stocks}                                                    
-                          value={defaultVal(stocks,stock)} 
-                          onChange={ (e)=> { setstock(e.value)}} 
-                          styles={customi}                   
-                          />
-                  </FormGroup>
-                  </Col>                                                                                 
-                </Row>
+      <SubMenu items={ConsolidadoRouter} prop='Inicio'/> 
+        <Row className="mt-1">           
+          <Col md={3}>
+          <Card>
+          <CardHeader>
+            <div className="card-icono"><FontAwesomeIcon icon={faShoppingCart} /></div>
+            <CardTitle className="text-dark mt-2"> SUMATORIA VENTAS</CardTitle>              
+              <p>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(ventaT.suma)}</p>                                 
+                                           
+              </CardHeader>
+          </Card>    
+          </Col> 
+          <Col md={3}>
+          <Card>
+          <CardHeader>
+              <div className="card-icono"><FontAwesomeIcon icon={faReceipt} /></div>
+              <CardTitle className="text-dark mt-2"> SUMATORIA COMPRAS</CardTitle>
+              <p>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(compraT.suma)}</p>                                    
+              </CardHeader>
+          </Card>    
+          </Col> 
+          <Col md={3}>
+          <Card>
+          <CardHeader>
+            <div className="card-rojo"><FontAwesomeIcon icon={faArrowUp} /></div>
+              <CardTitle className="text-dark mt-2"> <b>{ppendientes.total || '0'}</b>  - CUENTAS X PAGAR</CardTitle>              
+              <p>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(ppendientes.suma || '0')}</p>                                  
+              </CardHeader>
+          </Card>    
+          </Col> 
+          <Col md={3}>
+          <Card>
+          <CardHeader>
+              <div className="card-verde"><FontAwesomeIcon icon={faArrowDown } /></div>
+              <CardTitle className="text-dark mt-2"> <b>{cpendientes.total || '0'}</b> - CUENTAS X COBRAR</CardTitle>              
+              <p>{new Intl.NumberFormat('es-'+empresa.pais,{style: "currency",currency:empresa.moneda,minimumFractionDigits: 2}).format(cpendientes.suma)}</p>                                 
+              </CardHeader>
+          </Card>    
+          </Col>
+          
+        </Row>  
 
-                <Row form>                  
-                  <Col md="12"> 
-                  <FormGroup>   
-                  <Label for="eRango">Rango de Monto: </Label>                 
-                    <Select         
-                          defaultValue={rango[0]}
-                          name="rango"    
-                          id="rango"                    
-                          options={rangos}                                                    
-                          value={defaultVal(rangos,rango)} 
-                          onChange={ (e)=> { setRango(e.value)}} 
-                          styles={customi}                   
-                          />
-                  </FormGroup>
-                  </Col>                                                                                                                                     
-                </Row>
-                <Row form>                                    
-                  <Col md="12"> 
-                  <FormGroup>
-                  <Label for="eRango">Monto: </Label> 
-                    <Input 
-                      type="number" 
-                      name="vrango" 
-                      id="vrango" 
-                      value={vrango}                          
-                      onChange={ (e) => setVrango(e.target.value)} />
-                  </FormGroup>    
-                  </Col>                                                                                                                     
-                </Row>
-              
-                <Row form>                  
-                  <Col md="5">
-                  <FormGroup> 
-                  <Button 
-                      type="submit"
-                      className="btn-md btn-info mt-4">
-                      <FontAwesomeIcon icon={faSave} />  
-                      {' '} Generar
-                  </Button>
-                  </FormGroup> 
-                  </Col>                                                                   
-                </Row>
-               </Form>   
-              </CardBody>                        
-            </Card> 
-        </Col>    
-        <Col md="9">
-          <Inicio
-            rango={rango}
-            vrango={vrango}
-            stock={stock}
-          />
-        </Col>
-      </Row> 
-      </div>    
-    </div>   
-    </>
+        <Row className="mt-1">
+          <Col md={6}>
+            <Card>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={compras}
+                />
+            </Card>    
+          </Col>  
+          <Col md={6}>
+            <Card>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={ventas}
+                />
+            </Card>    
+          </Col>            
+        </Row> 
+        <Row className="mt-1">
+          <Col md={12}>
+            <Card>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={inventarios}
+              />  
+            </Card>                       
+          </Col>            
+        </Row>   
+      </div>
+    </div>    
   )
 
 };
-export default ExistenciasView;
+export default InicioView;

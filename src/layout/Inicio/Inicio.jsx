@@ -5,7 +5,7 @@ import InicioView from "../../pages/HOME/InicioView"
 function Post(){
 return(
     <Switch>
-        <Route path="/inicio/" component={InicioView}/>                
+        <Route path="/inicio/" component={InicioView}/>                        
     </Switch>
 )    
 }

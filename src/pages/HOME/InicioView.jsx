@@ -317,10 +317,17 @@ export default function InicioView({setToken}) {
 
 
 const getLicencia = () =>{
-  let ok ={
-    "licencia" : empresa.licencia
+  /*localStorage.setItem("@userCount", true);*/
+  
+  const tuc = JSON.parse(localStorage.getItem('@userCount'))
+  alert(tuc)
+  if(tuc === false){
+    let ok ={
+      "licencia" : empresa.licencia
+    }
+    dispatch(crudActions.GET_LICENCIA('EMPRESA_LICENCIA',ok))     
+    localStorage.setItem("@userCount", true)
   }
-  dispatch(crudActions.GET_LICENCIA('EMPRESA_LICENCIA',ok))     
 }
 
 
@@ -331,7 +338,7 @@ useEffect(() => {
     getComponent()
   }, 4000);*/
   return () => {
-    dispatch({type:'LICENCIAS_RESET'})
+    /*dispatch({type:'LICENCIAS_RESET'})*/
   };
 }, []);  
    

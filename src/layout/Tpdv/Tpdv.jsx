@@ -3,14 +3,12 @@ import { css } from "@emotion/react";
 import { Route, Switch, NavLink } from "react-router-dom";
 import { Row, Col, Button, Nav, Modal, ModalBody, NavItem } from "reactstrap";
 import {  useSelector, useDispatch } from "react-redux";
-import { usuarioActions} from "../../actions"
+import { usuarioActions, crudActions} from "../../actions"
+import { modulos } from "../../route.js";
 import MoonLoader from "react-spinners/MoonLoader";
+import CajasItems from "../../pages/TPVD/CajasItems/CajasItemsView.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion, faBell, faEnvelope,faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-
-import Tpdv from "../../pages/TPVD/Tpv/Tpv.jsx"
-import Cajas from "../../pages/TPVD/Cajas/CajasView.jsx"
-import CajasItems from "../../pages/TPVD/CajasItems/CajasItemsView.jsx";
 import Moment from "react-moment";
 const override = css`
   display: block;
@@ -22,43 +20,14 @@ const fechaHoy = new Date()
 
 function Crm(){
   const dispatch = useDispatch() 
-    const usuario = JSON.parse(localStorage.getItem('@userUnity'))
-    const [itemr,setItemr] = useState([])    
-    const modulos = JSON.parse(localStorage.getItem('@userItems'))  
-    const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))  
-    const { loading }= useSelector(state => state.usuarios)
-    const { titem } = useSelector(state => state.tdcs) 
+  const usuario = JSON.parse(localStorage.getItem('@userUnity'))  
+  const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))  
+  const { loading }= useSelector(state => state.usuarios)
+  const { titem } = useSelector(state => state.tdcs) 
 
-    const changeModule = useCallback((name, tab, pky) =>{
-        let items = [...itemr];
-        modulos.map((prop, key)=>{            
-            if(prop.icon === "tpdv"){
-            let dato = {
-                path: prop.path,
-                name: prop.name,
-                icon: prop.icon,
-                component: verificar(prop.component),
-                layout: prop.layout
-            };
-            items.push(dato);
-            }
-            return null;
-        })
-        setItemr(items)
-    })
     const logoutt = () => {    
       dispatch(usuarioActions.logout())  
     };
-    const verificar = (component) => {
-        switch (component) {
-          case "Tpdv":
-            return Tpdv;   
-          case "Cajas":
-            return Cajas;          
-          default:
-            return null;
-        }
-      };
     
     const getRoutes = (routes) =>{
         return routes.map((prop, key) =>{
@@ -77,10 +46,10 @@ function Crm(){
     };
     
 
-    useEffect(() => {        
-        changeModule();
-        return () => {
-         
+    useEffect(() => {  
+      let ii ={"pr":"0"}
+        dispatch(crudActions.GET_SEARCH('TDCS_TITEM','tdcs',ii))               
+        return () => {         
         };
     }, []);
 
@@ -151,30 +120,27 @@ return(
               </Row>   
             </div>  
         </div>
-        <Nav> 
-          <div className="navLeft">    
-        {itemr.map((prop, key) => (  
-          <NavItem key={key}>  
-            <NavLink                
-              to={prop.layout + prop.path}
-              className="nav-link"
-              activeClassName="active">               
-              <p> {prop.name}</p>                    
-            </NavLink>
-          </NavItem>))
-        }
-      </div>
-
-        <div className="navRight">          
-          
-        </div>
+        
+        <Nav>                 
+            {modulos.map((prop, key) => (  
+              prop.layout === '/tpdv' ?
+              <NavItem key={key}>  
+                <NavLink                
+                  to={prop.layout + prop.path}
+                  className="nav-link"
+                  activeClassName="active">               
+                  <p> {prop.name}</p>     
+                  <FontAwesomeIcon icon={prop.icon} className="icon-layout"/>                
+                </NavLink>
+              </NavItem>: null))
+            }      
         </Nav>        
         </div>  
        
 
         <Switch>   
-          {getRoutes(itemr)}    
-          <Route path="/tpdv/cajasitems/:cajaId" component={CajasItems}/>
+          {getRoutes(modulos)}      
+          <Route path="/tpdv/cajasitems/:cajaId" component={CajasItems}/>        
         </Switch>             
       </div>        
     </div>    

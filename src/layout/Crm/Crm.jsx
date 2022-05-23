@@ -1,21 +1,13 @@
-import React,{ useEffect, useCallback, useState } from "react";
+import React,{ useEffect } from "react";
 import { css } from "@emotion/react";
 import { Route, Switch, NavLink } from "react-router-dom";
 import { Row, Col, Button, Nav, Modal, ModalBody, NavItem } from "reactstrap";
 import {  useSelector, useDispatch } from "react-redux";
 import { usuarioActions, crudActions} from "../../actions"
+import { modulos } from "../../route.js";
 import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion, faBell, faEnvelope,faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import CrmInicio from "../../pages/CRM/InicioView.jsx"
-import Clientes from "../../pages/CRM/Clientes/ClientesView"
-import Tickets from "../../pages/CRM/Tickets/TicketsView"
-import Cotizaciones from "../../pages/CRM/Cotizaciones/Cotizaciones.jsx"
-import Promociones from "../../pages/CRM/Prospectos/Prospectos.jsx"
-import Informes from "../../pages/CRM/Informes/ClientesView.jsx"
-import ICotizaciones from "../../pages/CRM/Informes/CotizacionesView.jsx"
-import IProspectos from "../../pages/CRM/Informes/ProspectosView.jsx"
-import ITickets from "../../pages/CRM/Informes/TicketsView.jsx";
 import Moment from "react-moment";
 
 const override = css`
@@ -26,51 +18,16 @@ const override = css`
 const fechaHoy = new Date()
 function Crm(){
   const dispatch = useDispatch() 
-    const usuario = JSON.parse(localStorage.getItem('@userUnity'))
-    const [itemr,setItemr] = useState([])    
-    const modulos = JSON.parse(localStorage.getItem('@userItems'))      
+    const usuario = JSON.parse(localStorage.getItem('@userUnity'))          
     const { loading }= useSelector(state => state.usuarios)
    
-
-    const changeModule = useCallback((name, tab, pky) =>{
-        let items = [...itemr];
-        modulos.map((prop, key)=>{            
-            if(prop.icon === "crm"){
-            let dato = {
-                path: prop.path,
-                name: prop.name,
-                icon: prop.icon,
-                component: verificar(prop.component),
-                layout: prop.layout
-            };
-            items.push(dato);
-            }
-            return null;
-        })
-        setItemr(items)
-    })
     const logoutt = () => {    
       dispatch(usuarioActions.logout())  
     };
-    const verificar = (component) => {
-        switch (component) {
-          case "Clientes":
-            return Clientes;   
-          case "Tickets":
-            return Tickets;
-          case "Cotizaciones":
-            return Cotizaciones;
-          case "Promociones":
-            return Promociones;
-          case "Informes":
-            return Informes;              
-          default:
-            return null;
-        }
-      };
+
     
-    const getRoutes = (routes) =>{
-        return routes.map((prop, key) =>{
+    const getRoutes = (route) =>{
+        return route.map((prop, key) =>{
             if(prop.layout === '/crm'){
                 return(
                     <Route
@@ -86,12 +43,10 @@ function Crm(){
     };
     
 
-    useEffect(() => {        
-        changeModule();
+    useEffect(() => {                
         let ii ={"pr":"0"}
         dispatch(crudActions.GET_SEARCH('TDCS_TITEM','tdcs',ii))  
-        return () => {
-         
+        return () => {         
         };
     }, []);
 
@@ -157,39 +112,24 @@ return(
             </div>  
         </div>
         <Nav> 
-          <div className="navLeft">  
-              <NavItem>       
-                <NavLink to="/crm/inicio" className="nav-link" activeClassName="active">            
-                  <p className="text-white">  Dashboard  </p>
-                </NavLink>          
-              </NavItem>                  
-        
-        {itemr.map((prop, key) => (  
-          <NavItem key={key}>  
-            <NavLink                
-              to={prop.layout + prop.path}
-              className="nav-link"
-              activeClassName="active">               
-              <p> {prop.name}</p>                    
-            </NavLink>
-          </NavItem>))
-        }
-      </div>
-
-        <div className="navRight">          
-          
-        </div>
-        </Nav>        
-        </div>  
+                                   
+              {modulos.map((prop, key) => (  
+                prop.layout === '/crm' ?
+                <NavItem key={key}>  
+                  <NavLink                
+                    to={prop.layout + prop.path}
+                    className="nav-link"                    
+                    activeClassName="active">               
+                    <p> {prop.name}</p>      
+                    <FontAwesomeIcon icon={prop.icon} className="icon-layout"/>                                  
+                  </NavLink>
+                </NavItem>: null))
+              }
        
-
+        </Nav>        
+        </div>         
         <Switch>   
-          {getRoutes(itemr)}                       
-          <Route path="/crm/inicio" component={CrmInicio} />     
-          <Route path="/crm/icotizaciones" component={ICotizaciones} />     
-          <Route path="/crm/ipromociones" component={IProspectos} />     
-          <Route path="/crm/itickets" component={ITickets} />     
-          
+          {getRoutes(modulos)}                       
         </Switch>             
       </div>        
     </div>    

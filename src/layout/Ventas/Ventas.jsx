@@ -4,16 +4,10 @@ import { Route, Switch, NavLink } from "react-router-dom";
 import { Row, Col, Button, Nav, Modal, ModalBody, NavItem } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { usuarioActions, crudActions} from "../../actions"
+import { modulos } from "../../route.js";
 import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion, faBell, faEnvelope, faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import Dashboard from "../../pages/VENTAS/InicioView";
-import Clientes from "../../pages/CRM/Clientes/ClientesView"
-import Ventas from "../../pages/VENTAS/Ventas/Ventas"
-import Informes from "../../pages/VENTAS/Informes/MovimientosView"
-import Cobros from "../../pages/VENTAS/Cobros/Cobros"
-import Icobros from "../../pages/VENTAS/Informes/CobrosView"
-
 import Moment from "react-moment";
 
 
@@ -25,51 +19,14 @@ const override = css`
 const fechaHoy = new Date()
 function VentasLayout(){
   const dispatch = useDispatch() 
-    const usuario = JSON.parse(localStorage.getItem('@userUnity'))
-    const [itemr,setItemr] = useState([])    
-    const modulos = JSON.parse(localStorage.getItem('@userItems')) 
+    const usuario = JSON.parse(localStorage.getItem('@userUnity'))        
     const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))   
     const { loading }= useSelector(state => state.usuarios)
     const { titem } = useSelector(state => state.tdcs) 
 
-
-    const changeModule = useCallback((name, tab, pky) =>{
-        let items = [...itemr];
-        modulos.map((prop, key)=>{
-          if(prop.icon === "ventas"){
-            let dato = {
-                path: prop.path,
-                name: prop.name,
-                icon: prop.icon,
-                component: verificar(prop.component),
-                layout: prop.layout
-            };
-            items.push(dato);
-          }  
-          return null;
-        })
-        setItemr(items)
-    })
     const logoutt = () => {    
       dispatch(usuarioActions.logout())  
-    };
-    const verificar = (component) => {
-        switch (component) {
-          case "Dashboard":
-            return Dashboard;
-          case "Clientes":
-            return Clientes;
-          case "Ventas":
-            return Ventas;          
-          case "Cobros":
-            return Cobros;                                                               
-          case "Informes":
-            return Informes;     
-          default:
-            return null;
-        }
-      };
-    
+    };    
     const getRoutes = (routes) =>{
         return routes.map((prop, key) =>{
             if(prop.layout === '/ventas'){
@@ -87,8 +44,7 @@ function VentasLayout(){
     };
     
 
-    useEffect(() => {        
-        changeModule();
+    useEffect(() => {                
         let ii ={"pr":"0"}
         dispatch(crudActions.GET_SEARCH('TDCS_TITEM','tdcs',ii))  
         return () => {
@@ -163,22 +119,18 @@ return(
                   </Row>   
             </div>  
         </div>          
-        <Nav> 
-  
-            <NavItem>       
-              <NavLink to="/ventas/inicio" className="nav-link" activeClassName="active">            
-                <p className="text-white">  Dashboard  </p>
-              </NavLink>          
-            </NavItem>
-            {itemr.map((prop, key) => (  
+        <Nav>               
+            {modulos.map((prop, key) => (  
+               prop.layout === '/ventas' ?
               <NavItem key={key}>  
                 <NavLink                
                   to={prop.layout + prop.path}
                   className="nav-link"
                   activeClassName="active">               
-                  <p> {prop.name}</p>                    
+                  <p> {prop.name}</p>
+                  <FontAwesomeIcon icon={prop.icon} className="icon-layout"/> 
                 </NavLink>
-              </NavItem>))
+              </NavItem>: null))
             }
      
         </Nav>        
@@ -186,9 +138,7 @@ return(
        
 
         <Switch>   
-          {getRoutes(itemr)}
-          <Route path="/ventas/inicio" component={Dashboard} /> 
-          <Route path="/ventas/icobros" component={Icobros} />
+          {getRoutes(modulos)}       
         </Switch>             
       </div>        
     </div>    

@@ -19,7 +19,7 @@ function login(usuario) {
        
         localStorage.setItem("@userUnity", JSON.stringify(response.user.usuario));
         localStorage.setItem("@userToken", JSON.stringify(response.user.token));
-        localStorage.setItem("@userItems", JSON.stringify(response.modulos));
+        /*localStorage.setItem("@userItems", JSON.stringify(response.modulos));*/
         localStorage.setItem("@userAlmacen", JSON.stringify(response.almacen));
         localStorage.setItem("@userEmpresa", JSON.stringify(response.empresa));
       }  
@@ -47,7 +47,7 @@ function handleResponse(response) {
 function logout() {
   localStorage.removeItem("@userUnity");
   localStorage.removeItem("@userToken");
-  localStorage.removeItem("@userItems");
+  /*localStorage.removeItem("@userItems");*/
   localStorage.removeItem("@userAlmacen");
   localStorage.removeItem("@userEmpresa");
 }

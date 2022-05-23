@@ -11,7 +11,8 @@ const initialState = {
       estado: true,
       rolId: 1,
       almacenId: 2,
-      isCajero: false
+      isCajero: false,
+      numCaja:0
     },   
     modulos:[]
   };

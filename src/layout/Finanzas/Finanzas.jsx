@@ -4,18 +4,14 @@ import { Route, Switch, NavLink } from "react-router-dom";
 import { Row, Col, Button, Nav, Modal, ModalBody, NavItem } from "reactstrap";
 import {  useSelector, useDispatch } from "react-redux";
 import { usuarioActions, crudActions} from "../../actions"
+import { modulos } from "../../route.js";
 import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion, faBell, faEnvelope, faHome,  faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import Contabilidad from "../../pages/CONTABILIDAD/Contabilidad.jsx"
-import Comprobantes from "../../pages/CONTABILIDAD/Comprobantes/Comprobantes.jsx"
-import Puc from "../../pages/CONTABILIDAD/Pucs/PucsView.jsx"
-import Tdc from "../../pages/CONTABILIDAD/Tdc/TdcView.jsx"
+import Moment from "react-moment";
 import Libros from "../../pages/CONTABILIDAD/Diarios/DiariosView.jsx"
 import Mayores from "../../pages/CONTABILIDAD/Mayores/MayoresView.jsx"
 import Saldos from "../../pages/CONTABILIDAD/Saldos/SaldosView.jsx"
-import Moment from "react-moment";
-
 const override = css`
   display: block;
   margin: 0 auto;
@@ -24,49 +20,15 @@ const override = css`
 const fechaHoy = new Date()
 
 function Finanzas(){
-  const dispatch = useDispatch()     
-    const [itemr,setItemr] = useState([])    
-    const usuario = JSON.parse(localStorage.getItem('@userUnity'))
-    const modulos = JSON.parse(localStorage.getItem('@userItems')) 
+  const dispatch = useDispatch()         
+    const usuario = JSON.parse(localStorage.getItem('@userUnity'))    
     const empresa = JSON.parse(localStorage.getItem('@userEmpresa'))   
     const { loading }= useSelector(state => state.usuarios)
     const { titem } = useSelector(state => state.tdcs) 
 
-
-    const changeModule = useCallback((name, tab, pky) =>{
-        let items = [...itemr];
-        modulos.map((prop, key)=>{            
-            if(prop.icon === "finanzas"){
-            let dato = {
-                path: prop.path,
-                name: prop.name,
-                icon: prop.icon,
-                component: verificar(prop.component),
-                layout: prop.layout
-            };
-            items.push(dato);
-            }
-            return null;
-        })
-        setItemr(items)
-    })
     const logoutt = () => {    
       dispatch(usuarioActions.logout())  
     };
-    const verificar = (component) => {
-        switch (component) {
-          case "Comprobantes":
-            return Comprobantes;   
-          case "Puc":
-            return Puc;
-          case "Tdc":
-            return Tdc;
-          case "Libros":
-            return Libros;            
-          default:
-            return null;
-        }
-      };
     
     const getRoutes = (routes) =>{
         return routes.map((prop, key) =>{
@@ -85,8 +47,7 @@ function Finanzas(){
     };
     
 
-    useEffect(() => {        
-        changeModule();
+    useEffect(() => {                
         let ii ={"pr":"0"}
         dispatch(crudActions.GET_SEARCH('TDCS_TITEM','tdcs',ii))  
         return () => {
@@ -162,38 +123,26 @@ return(
             </div>  
         </div>
         <Nav> 
-          <div className="navLeft">  
-              <NavItem>       
-                <NavLink to="/finanzas/inicio" className="nav-link" activeClassName="active">            
-                  <p className="text-white">  Dashboard  </p>
-                </NavLink>          
-              </NavItem>                  
-        
-        {itemr.map((prop, key) => (  
-          <NavItem key={key}>  
-            <NavLink                
-              to={prop.layout + prop.path}
-              className="nav-link"
-              activeClassName="active">               
-              <p> {prop.name}</p>                    
-            </NavLink>
-          </NavItem>))
-        }
-      </div>
-
-        <div className="navRight">          
-          
-        </div>
+            {modulos.map((prop, key) => (  
+              prop.layout === '/finanzas' ?
+              <NavItem key={key}>  
+                <NavLink                
+                  to={prop.layout + prop.path}
+                  className="nav-link"
+                  activeClassName="active">               
+                  <p> {prop.name}</p>   
+                  <FontAwesomeIcon icon={prop.icon} className="icon-layout"/>                 
+                </NavLink>
+              </NavItem>: null))
+            }      
         </Nav>        
-        </div>  
-       
+        </div>         
 
         <Switch>   
-          {getRoutes(itemr)}                       
-          <Route path="/finanzas/inicio" component={Contabilidad} />          
+          {getRoutes(modulos)}          
           <Route path="/finanzas/libros" component={Libros} />
           <Route path="/finanzas/mayores" component={Mayores} />
-          <Route path="/finanzas/saldos" component={Saldos} />
+          <Route path="/finanzas/saldos" component={Saldos} />                       
         </Switch>             
       </div>        
     </div>    

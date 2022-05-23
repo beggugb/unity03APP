@@ -66,19 +66,24 @@ const EditUsuario = () => {
             <CardBody>
               <h5>Formulario de Registro</h5>
               <Form onSubmit={ submitHandle}>
+              <Row>
+                <Col md="12">
                 <FormGroup>
-                  <Label for="enombre">Nombres</Label>
-                    <Input type="text" name="nombres" id="nombres" 
-                      value={item.nombres || ''}                          
-                      onChange={ (e) => changeHandler(e)} 
-                      onInvalid={(e) => e.target.setCustomValidity('El campo nombre es obligatorio !')}
-                      onInput={(e) => e.target.setCustomValidity('')}
-                      required
-                      />    
-                </FormGroup>    
+                <Label for="enombre">Nombres</Label>
+                  <Input type="text" name="nombres" id="nombres" 
+                    value={item.nombres || ''}                          
+                    onChange={ (e) => changeHandler(e)} 
+                    onInvalid={(e) => e.target.setCustomValidity('El campo nombre es obligatorio !')}
+                    onInput={(e) => e.target.setCustomValidity('')}
+                    required
+                    />    
+                </FormGroup> 
+                </Col>    
+              </Row>  
+              <Row>
+                <Col md="8">
                 <FormGroup>
-                <Label for="enombre">Username</Label>
-                
+                  <Label for="enombre">Username</Label>
                   <Input type="text" name="username" id="username" 
                     value={item.username || ''}                          
                     onChange={ (e) => changeHandler(e)} 
@@ -86,12 +91,25 @@ const EditUsuario = () => {
                     onInput={(e) => e.target.setCustomValidity('')}
                     required/>    
                 </FormGroup> 
+                </Col>   
+                <Col md="4">
                 <FormGroup>
-                  <SelectAlmacenes/>
-                </FormGroup>
+                  <Label for="enombre">Nº Caja</Label>
+                  <Input type="text" name="numCaja" id="numCaja" 
+                    value={item.numCaja || ''}                          
+                    onChange={ (e) => changeHandler(e)} 
+                    onInvalid={(e) => e.target.setCustomValidity('El campo nombre es obligatorio !')}
+                    onInput={(e) => e.target.setCustomValidity('')}
+                    required/>    
+                </FormGroup> 
+                </Col> 
+              </Row>  
+
+              <Row>
+                <Col md="6">
                 <FormGroup>
-                <Label for="enombreCorto">Rol</Label>
-                <Select                                                               
+                  <Label for="enombreCorto">Rol</Label>
+                  <Select                                                               
                         defaultValue={roles[0]}
                         styles={custom} 
                         name="rolId"    
@@ -100,8 +118,16 @@ const EditUsuario = () => {
                         value={defaultVal(roles,item.rolId)}   
                         onChange={ (e) => changesHandler(e)}                                               
                       /> 
-                </FormGroup>   
-                <Row>
+                  </FormGroup>
+                </Col>
+                <Col md="6">
+                <SelectAlmacenes/>
+                </Col>    
+              </Row>    
+
+
+
+               <Row>
                 <Col md="2">
                   <Button 
                     onClick={(e) => changesNew(e)}

@@ -37,13 +37,13 @@ const EditEmpresa = () => {
     const submitHandle = event => {       
         event.preventDefault()    
         let iok  ={
-          id:         item.id,
+          id:          item.id,
           labelMoneda: item.labelMoneda,
-          moneda: item.moneda,
-          nombre: item.razonSocial,
-          pais:   item.pais
+          moneda:      item.moneda,
+          nombre:      item.razonSocial,
+          pais:        item.pais
         }
-        localStorage.setItem("@userEmpresa", JSON.stringify(iok));
+        /*localStorage.setItem("@userEmpresa", JSON.stringify(iok));*/
         dispatch(crudActions.SET_UPDATE('EMPRESA_ITEM','empresas',item,'dato'))            
      }
 

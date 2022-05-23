@@ -8,7 +8,15 @@ import MoonLoader from "react-spinners/MoonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion, faBell, faEnvelope,faHome, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import InicioView from "../../pages/CONSOLIDADO/InicioView.jsx"
+import ComprasView from "../../pages/CONSOLIDADO/ComprasView.jsx"
+import ClientesView from "../../pages/CONSOLIDADO/ClientesView.jsx"
+import TicketsView from "../../pages/CONSOLIDADO/TicketsView.jsx"
 import CajasView from "../../pages/CONSOLIDADO/CajasView";
+import CotizacionesView from "../../pages/CONSOLIDADO/CotizacionesView.jsx"
+import PagosView from "../../pages/CONSOLIDADO/PagosView.jsx"
+import VentasView from "../../pages/CONSOLIDADO/VentasView.jsx"
+import CobrosView from "../../pages/CONSOLIDADO/CobrosView.jsx"
+import ExistenciasView from "../../pages/CONSOLIDADO/ExistenciasView.jsx"
 import Moment from "react-moment";
 
 const override = css`
@@ -106,6 +114,14 @@ return(
         </div>  
         <Switch>  
           <Route path="/consolidado/inicio" component={InicioView} />          
+          <Route path="/consolidado/icompras" component={ComprasView} />
+          <Route path="/consolidado/iclientes" component={ClientesView} />
+          <Route path="/consolidado/itickets" component={TicketsView} />
+          <Route path="/consolidado/icotizaciones" component={CotizacionesView} />
+          <Route path="/consolidado/ipagos" component={PagosView} />
+          <Route path="/consolidado/iventas" component={VentasView} />
+          <Route path="/consolidado/icobros" component={CobrosView} />
+          <Route path="/consolidado/iexistencias" component={ExistenciasView} />
           <Route path="/consolidado/icajas" component={CajasView} />          
         </Switch>             
       </div>        

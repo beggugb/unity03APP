@@ -5,6 +5,7 @@ import AdminLayout from './layout/Compras/Compras.jsx'
 import PostLayout from './layout/Post/Post.jsx'
 import CrmLayout from './layout/Crm/Crm.jsx'
 import InicioLayout from './layout/Inicio/Inicio.jsx'
+import FichaLayout from './layout/Inicio/Ficha.jsx'
 import FinanzasLayout from './layout/Finanzas/Finanzas.jsx'
 import TpdvLayout from './layout/Tpdv/Tpdv.jsx'
 import ToolLayout from './layout/Tool/Tool.jsx'
@@ -55,10 +56,11 @@ function App() {
               exact
               path="/inicio"
               render={() => <Redirect to="/inicio/dashboard" />}
-            />                                          
+            />              
             <PrivateRoute path="/compras" component={AdminLayout} />            
             <PrivateRoute path="/ventas" component={VentasLayout} />
-            <PrivateRoute path="/inicio" component={InicioLayout} />            
+            <PrivateRoute path="/inicio" component={InicioLayout} />
+            <PrivateRoute path="/fichas" component={FichaLayout} />            
             <PrivateRoute path="/crm" component={CrmLayout} />
             <PrivateRoute path="/finanzas" component={FinanzasLayout} />
             <PrivateRoute path="/tpdv" component={TpdvLayout} />

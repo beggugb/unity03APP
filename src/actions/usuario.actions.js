@@ -15,7 +15,8 @@ function login(user) {
       .then((response) => {                    
         if(response.user.usuario){          
           dispatch({type:'LOGIN_SUCCESS'})                
-            history.push("/inicio");                                        
+            history.push("/inicio");    
+            /*localStorage.setItem("@userCount", true);*/
         }else{          
           toastr.error('Error', response.user.message)
         }              
@@ -29,6 +30,7 @@ function login(user) {
 function logout() {    
   return (dispatch) => {
     usuarioService.logout();
+    localStorage.setItem("@userCount", false);
     dispatch({type:'LOGIN_LOGOUT'})
     history.push("/");
   };
